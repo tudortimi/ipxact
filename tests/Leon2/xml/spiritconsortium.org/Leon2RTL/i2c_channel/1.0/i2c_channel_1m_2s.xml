@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : i2c_channel_1m_2s.xml
+// Author : 
+// Version: 1.0
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>i2c_channel_1m_2s</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>i2c_master1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.nxp" name="i2c" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.nxp" name="i2c_rtl" version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SCL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>scl_m1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SDA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sda_m1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>i2c_slave1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.nxp" name="i2c" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.nxp" name="i2c_rtl" version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SCL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>scl_s1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SDA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sda_s1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>i2c_slave2</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.nxp" name="i2c" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.nxp" name="i2c_rtl" version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SCL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>scl_s2</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SDA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sda_s2</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:channels>
+      <ipxact:channel>
+         <ipxact:name>i2c</ipxact:name>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>i2c_master1</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>i2c_slave1</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>i2c_slave2</ipxact:localName>
+         </ipxact:busInterfaceRef>
+      </ipxact:channel>
+   </ipxact:channels>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>verilogsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>verilogsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+         <ipxact:view>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>verilogsource</ipxact:name>
+            <ipxact:language>verilog</ipxact:language>
+            <ipxact:moduleName>i2c_channel_1m_2s</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-verilogSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>i2c_channel_1m_2s</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-verilogSource</ipxact:localName>
+            </ipxact:fileSetRef>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlWrapper</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>scl_m1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>inout</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sda_m1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>inout</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>scl_s1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sda_s1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>inout</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>scl_s2</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sda_s2</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>inout</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-verilogSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>data/i2c_channel_1m_2s/RTL/i2c_channel_1m_2s.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_channel_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlWrapper</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>data/i2c_channel_1m_2s/RTL/i2c_channel_1m_2s.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_channel_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:description>1 master, 2 slave i2c channel</ipxact:description>
+</ipxact:component>

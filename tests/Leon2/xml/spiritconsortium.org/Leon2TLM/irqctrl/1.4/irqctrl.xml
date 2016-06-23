@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>irqctrl</ipxact:name>
+   <ipxact:version>1.4</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>APB_Slave</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="APB_MM"/>
+         </ipxact:slave>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Master</ipxact:name>
+         <ipxact:busType library="busdef.leon2" name="IntProc" vendor="spiritconsortium.org"
+                         version="v1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="IntProc_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irlout</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQVEC</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irlin</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>INTack</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>intack</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave4</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int4</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave3</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int3</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave2</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int2</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave1</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave0</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>APB_MM</ipxact:name>
+         <ipxact:addressBlock>
+            <ipxact:name>apbMemoryMap</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:range>64</ipxact:range>
+            <ipxact:width>width</ipxact:width>
+            <ipxact:parameters>
+               <ipxact:parameter parameterId="width" type="longint">
+                  <ipxact:name>width</ipxact:name>
+                  <ipxact:value>32</ipxact:value>
+               </ipxact:parameter>
+            </ipxact:parameters>
+            <ipxact:register>
+               <ipxact:name>interrupMaskandPriorityLevel</ipxact:name>
+               <ipxact:description>Interrupt Mask and Priority</ipxact:description>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved1</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,1)</ipxact:value>
+                        <ipxact:mask>('hFFFE) / $pow(2,0) % $pow(2,1)</ipxact:mask>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>imask</ipxact:name>
+                  <ipxact:description>Indicates if an interrupt is masked (bit=0) or enabled (bit=1)</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,1) % $pow(2,15)</ipxact:value>
+                        <ipxact:mask>('hFFFE) / $pow(2,1) % $pow(2,15)</ipxact:mask>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>15</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Reserved2</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>16</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,16) % $pow(2,1)</ipxact:value>
+                        <ipxact:mask>('hFFFE) / $pow(2,16) % $pow(2,1)</ipxact:mask>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>ilevel</ipxact:name>
+                  <ipxact:description>Indicates if an interrupt belongs to priority level 1 (bit=1) or 0 (bit=0)</ipxact:description>
+                  <ipxact:bitOffset>17</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,17) % $pow(2,15)</ipxact:value>
+                        <ipxact:mask>('hFFFE) / $pow(2,17) % $pow(2,15)</ipxact:mask>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>15</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>interruptPendingRegister</ipxact:name>
+               <ipxact:description>Indicates if an interrupt is pending</ipxact:description>
+               <ipxact:addressOffset>'h4</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved1</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>ipend</ipxact:name>
+                  <ipxact:description>Indicates if an interrupt is pending (bit=1)</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:bitWidth>15</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Reserved2</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>16</ipxact:bitOffset>
+                  <ipxact:bitWidth>16</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>interruptForceRegister</ipxact:name>
+               <ipxact:description>Indicates if an interrupt is being forced</ipxact:description>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved1</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>iforce</ipxact:name>
+                  <ipxact:description>Indicates if an interrupt is being forced (bit=1)</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:bitWidth>15</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Reserved2</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>16</ipxact:bitOffset>
+                  <ipxact:bitWidth>16</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>interruptClearRegister</ipxact:name>
+               <ipxact:description>If written with a '1', will clear corresponding bit(s) in interrupt pending register. A read returns 0.</ipxact:description>
+               <ipxact:addressOffset>'hc</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved1</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>iforce</ipxact:name>
+                  <ipxact:description>If written with a '1', will clear corresponding bit(s) in interrupt pending register. A read returns 0.</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:bitWidth>15</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Reserved2</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>16</ipxact:bitOffset>
+                  <ipxact:bitWidth>16</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:testable>false</ipxact:testable>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>interruptReadClearPendingRegister</ipxact:name>
+               <ipxact:description>interruptReadClearPendingRegister</ipxact:description>
+               <ipxact:addressOffset>'h10</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>true</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>interruptReadClearPendingRegister</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+         </ipxact:addressBlock>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>TLM_PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:language>systemc</ipxact:language>
+            <ipxact:moduleName>irqctrl</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>sourceCode</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>apb_slave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>int0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>int1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>int2</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>int3</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>int4</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irlout</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irlin</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>intack</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>bool</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>sourceCode</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/irqctrl.cc</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>tlmsrc</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/irqctrl.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>timers</ipxact:logicalName>
+            <ipxact:dependency>../../PV</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_slave_base.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_target_port.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/user_types.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+</ipxact:component>

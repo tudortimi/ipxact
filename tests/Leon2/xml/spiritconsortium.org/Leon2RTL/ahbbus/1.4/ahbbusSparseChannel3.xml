@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : ahbbusSparseChannel3.xml
+// Author : SPIRIT Schema Working Group 
+// Version: 1.0
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>ahbbusSparseChannel3</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredMaster</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredSlave0</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress>start_addr_slv0_mirror</ipxact:remapAddress>
+               <ipxact:range>range_slv0_mirror</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="start_addr_slv0_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Starting Address:">
+               <ipxact:name>start_addr_slv0_mirror</ipxact:name>
+               <ipxact:value>'h00000000</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="range_slv0_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Range:">
+               <ipxact:name>range_slv0_mirror</ipxact:name>
+               <ipxact:value>'h00010000</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredSlave1</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress>start_addr_slv1_mirror</ipxact:remapAddress>
+               <ipxact:range>range_slv1_mirror</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="start_addr_slv1_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 1 Starting Address:">
+               <ipxact:name>start_addr_slv1_mirror</ipxact:name>
+               <ipxact:value>'h00000000</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="range_slv1_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 1 Range:">
+               <ipxact:name>range_slv1_mirror</ipxact:name>
+               <ipxact:value>'h00010000</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredSlave2</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress>start_addr_slv2_mirror</ipxact:remapAddress>
+               <ipxact:range>range_slv2_mirror</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="start_addr_slv2_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 2 Starting Address:">
+               <ipxact:name>start_addr_slv2_mirror</ipxact:name>
+               <ipxact:value>'h00000000</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="range_slv2_mirror" resolve="generated" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 2 Range:">
+               <ipxact:name>range_slv2_mirror</ipxact:name>
+               <ipxact:value>'h00010000</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:channels>
+      <ipxact:channel>
+         <ipxact:name>AHBChannel</ipxact:name>
+         <!--IP-XACT XSLT Warning#1:Removing element maxMasters from channel-->
+<!--IP-XACT XSLT Warning#2:Removing element maxSlaves from channel-->
+<ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredMaster</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredSlave0</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredSlave1</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredSlave2</ipxact:localName>
+         </ipxact:busInterfaceRef>
+      </ipxact:channel>
+   </ipxact:channels>
+</ipxact:component>

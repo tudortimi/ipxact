@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>processor</ipxact:name>
+   <ipxact:version>1.4</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>AHB_Master</ipxact:name>
+         <ipxact:busType library="AMBA2" name="AHB" vendor="amba.com" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="ahb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ahb_master_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master>
+            <ipxact:addressSpaceRef addressSpaceRef="main_AS"/>
+         </ipxact:master>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_Slave</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="APB_MM"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave</ipxact:name>
+         <ipxact:busType library="busdef.leon2" name="IntProc" vendor="spiritconsortium.org"
+                         version="v1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="IntProc_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irl_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQVEC</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irqvec_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>INTack</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>intack_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:addressSpaces>
+      <ipxact:addressSpace>
+         <ipxact:name>main_AS</ipxact:name>
+         <ipxact:range>4 * (2 ** 30)</ipxact:range>
+         <ipxact:width>32</ipxact:width>
+         <ipxact:localMemoryMap>
+            <ipxact:name>ahbLocalMemoryMap</ipxact:name>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4490218</ipxact:name>
+               <ipxact:baseAddress>start_addr_local</ipxact:baseAddress>
+               <ipxact:range>range_local</ipxact:range>
+               <ipxact:width>width</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="start_addr_local" type="longint" choiceRef="BaseAddressChoices"
+                                    configGroups="requiredConfig"
+                                    prompt="Local Memory Map Starting Address:">
+                     <ipxact:name>start_addr_local</ipxact:name>
+                     <ipxact:value>'h10000000</ipxact:value>
+                  </ipxact:parameter>
+                  <ipxact:parameter parameterId="range_local" type="longint" choiceRef="RangeChoice"
+                                    configGroups="requiredConfig"
+                                    prompt="Local Memory Map Range (bytes):">
+                     <ipxact:name>range_local</ipxact:name>
+                     <ipxact:value>4096</ipxact:value>
+                  </ipxact:parameter>
+                  <ipxact:parameter parameterId="width" type="longint">
+                     <ipxact:name>width</ipxact:name>
+                     <ipxact:value>32</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+         </ipxact:localMemoryMap>
+      </ipxact:addressSpace>
+   </ipxact:addressSpaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>APB_MM</ipxact:name>
+         <ipxact:bank bankAlignment="serial">
+            <ipxact:name>defaultid4490282</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:addressBlock>
+               <ipxact:name>registers</ipxact:name>
+               <ipxact:range>4</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>register</ipxact:usage>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:register>
+                  <ipxact:name>Failures</ipxact:name>
+                  <ipxact:addressOffset>'h0</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>NumFailures</ipxact:name>
+                     <ipxact:description>Number of failures from the AHB BFM</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:bitWidth>32</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>lowest1k</ipxact:name>
+               <ipxact:range>1020</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>midlow1k</ipxact:name>
+               <ipxact:range>1 * (2 ** 10)</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>midhigh1k</ipxact:name>
+               <ipxact:range>1 * (2 ** 10)</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+            </ipxact:addressBlock>
+            <ipxact:bank bankAlignment="parallel">
+               <ipxact:name>defaultid4490406</ipxact:name>
+               <ipxact:addressBlock>
+                  <ipxact:name>highest1kx7_0</ipxact:name>
+                  <ipxact:range>1 * (2 ** 10)</ipxact:range>
+                  <ipxact:width>8</ipxact:width>
+                  <ipxact:usage>memory</ipxact:usage>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:addressBlock>
+               <ipxact:addressBlock>
+                  <ipxact:name>highest1kx15_8</ipxact:name>
+                  <ipxact:range>1 * (2 ** 10)</ipxact:range>
+                  <ipxact:width>8</ipxact:width>
+                  <ipxact:usage>memory</ipxact:usage>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:addressBlock>
+               <ipxact:addressBlock>
+                  <ipxact:name>highest1kx23_16</ipxact:name>
+                  <ipxact:range>1 * (2 ** 10)</ipxact:range>
+                  <ipxact:width>8</ipxact:width>
+                  <ipxact:usage>memory</ipxact:usage>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:addressBlock>
+               <ipxact:addressBlock>
+                  <ipxact:name>highest1kx31_24</ipxact:name>
+                  <ipxact:range>1 * (2 ** 10)</ipxact:range>
+                  <ipxact:width>8</ipxact:width>
+                  <ipxact:usage>memory</ipxact:usage>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:addressBlock>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+            </ipxact:bank>
+            <ipxact:usage>memory</ipxact:usage>
+            <ipxact:access>read-write</ipxact:access>
+         </ipxact:bank>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>TLM_PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:language>systemc</ipxact:language>
+            <ipxact:moduleName>processor</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter dataType="string">
+                  <ipxact:name>code_file</ipxact:name>
+                  <ipxact:value>code_file</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>sourceCode</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>ahb_master_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>apb_slave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irl_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>'h0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irqvec_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>intack_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>bool</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>clk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>sc_logic</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rst_an</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>bool</ipxact:typeName>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>BaseAddressChoices</ipxact:name>
+         <ipxact:enumeration text="0x00000000">0x00000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x10000000">0x10000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x20000000">0x20000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x30000000">0x30000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x40000000">0x40000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x50000000">0x50000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x60000000">0x60000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x70000000">0x70000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x80000000">0x80000000</ipxact:enumeration>
+         <ipxact:enumeration text="0x90000000">0x90000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xa0000000">0xa0000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xb0000000">0xb0000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xc0000000">0xc0000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xd0000000">0xd0000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xe0000000">0xe0000000</ipxact:enumeration>
+         <ipxact:enumeration text="0xf0000000">0xf0000000</ipxact:enumeration>
+      </ipxact:choice>
+      <ipxact:choice>
+         <ipxact:name>RangeChoice</ipxact:name>
+         <ipxact:enumeration text="0">0</ipxact:enumeration>
+         <ipxact:enumeration text="128">128</ipxact:enumeration>
+         <ipxact:enumeration text="256">256</ipxact:enumeration>
+         <ipxact:enumeration text="1k">1024</ipxact:enumeration>
+         <ipxact:enumeration text="2k">2048</ipxact:enumeration>
+         <ipxact:enumeration text="4k">4096</ipxact:enumeration>
+         <ipxact:enumeration text="8k">8192</ipxact:enumeration>
+         <ipxact:enumeration text="16k">16384</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>sourceCode</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/processor.cc</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>tlmsrc</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/processor.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>processor</ipxact:logicalName>
+            <ipxact:dependency>../../PV</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_slave_base.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_target_port.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_initiator_port.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/user_types.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:cpus>
+      <ipxact:cpu>
+         <ipxact:name>processor</ipxact:name>
+         <ipxact:addressSpaceRef addressSpaceRef="main_AS"/>
+      </ipxact:cpu>
+   </ipxact:cpus>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="code_file" resolve="user" configGroups="requiredConfig"
+                        prompt="File to read commands from:">
+         <ipxact:name>code_file</ipxact:name>
+         <ipxact:value>master.tbl</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

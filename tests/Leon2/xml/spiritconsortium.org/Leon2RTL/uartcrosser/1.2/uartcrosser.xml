@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : uart.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.2
+//
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>uartcrosser</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>Uart0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.generic" name="serial"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.generic" name="serial_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxd0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>TxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>txd0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ctsn0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rtsn0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>DTRn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxen0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>Uart1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.generic" name="serial"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.generic" name="serial_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxd1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>TxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>txd1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ctsn1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rtsn1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>DTRn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxen1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>uartcrosser(struct)</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter type="bit" dataType="std_logic_vector(7 downto 0)">
+                  <ipxact:name>ScalerValue</ipxact:name>
+                  <ipxact:vectors>
+                     <ipxact:vector>
+                        <ipxact:left>0</ipxact:left>
+                        <ipxact:right>8</ipxact:right>
+                     </ipxact:vector>
+                  </ipxact:vectors>
+                  <ipxact:value>ScalerValue</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>rxd0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>txd0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ctsn0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rtsn0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rxen0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rxd1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>txd1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ctsn1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rtsn1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rxen1</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>scaler</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>7</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/uartcrosser.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>uartcrosser_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="ScalerValue" resolve="user" type="bit"
+                        configGroups="requiredConfig"
+                        prompt="Value of the scaler:">
+         <ipxact:name>ScalerValue</ipxact:name>
+         <ipxact:vectors>
+            <ipxact:vector>
+               <ipxact:left>0</ipxact:left>
+               <ipxact:right>8</ipxact:right>
+            </ipxact:vector>
+         </ipxact:vectors>
+         <ipxact:value>8'b00000001</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

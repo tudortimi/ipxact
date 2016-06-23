@@ -1,0 +1,11 @@
+- think how I want to handle the dependency to pyxb
+  * for the moment, I'll just deploy it together with my code
+  * is it acceptable to force users to install this lib too?
+    ** it's open source, MIT license (or something permissive)
+    ** JavaXB works the same way, it's just part of the standard lib
+
+- enhance expression types with value returning functions of proper types
+  * need an SV expression parser
+
+- add semantic checks
+  * references defined in one file are available

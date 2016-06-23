@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: design_ahbbusSparse333.xml
+// Author:      The SPIRIT Consortium
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>design_ahbbusSparse333</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>ubridge</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseBridge333"
+                              version="1.0"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbSlaveChannel0</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel3"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv1_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv1_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv2_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv2_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbSlaveChannel1</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel3"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv1_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv1_mirror">0</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv2_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv2_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbSlaveChannel2</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel3"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv1_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv1_mirror">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv2_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv2_mirror">0</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbMasterChannel0</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h00000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">'h00040000</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbMasterChannel1</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h30000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">'h00020000</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>uahbMasterChannel2</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="ahbbusSparseChannel"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h80000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">'h40000000</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:interconnections>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489840a</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBmaster0"/>
+         <ipxact:activeInterface componentRef="uahbMasterChannel0" busRef="MirroredMaster"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489857a</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBmaster1"/>
+         <ipxact:activeInterface componentRef="uahbMasterChannel1" busRef="MirroredMaster"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489874a</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBmaster2"/>
+         <ipxact:activeInterface componentRef="uahbMasterChannel2" busRef="MirroredMaster"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489891b</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave00"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel0" busRef="MirroredSlave0"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489908b</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave01"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel0" busRef="MirroredSlave1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489925b</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave02"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel0" busRef="MirroredSlave2"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid489891c</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave10"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel1" busRef="MirroredSlave0"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid489908c</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave11"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel1" busRef="MirroredSlave1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid489925c</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave12"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel1" busRef="MirroredSlave2"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid89891d</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave20"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel2" busRef="MirroredSlave0"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid89908d</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave21"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel2" busRef="MirroredSlave1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid89925d</ipxact:name>
+         <ipxact:activeInterface componentRef="ubridge" busRef="ambaAHBslave22"/>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel2" busRef="MirroredSlave2"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredSlave0</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbMasterChannel0" busRef="MirroredSlave"/>
+         <ipxact:hierInterface busRef="MirroredSlave0"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredSlave1</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbMasterChannel1" busRef="MirroredSlave"/>
+         <ipxact:hierInterface busRef="MirroredSlave1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredSlave2</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbMasterChannel2" busRef="MirroredSlave"/>
+         <ipxact:hierInterface busRef="MirroredSlave2"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredMaster0</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel0" busRef="MirroredMaster"/>
+         <ipxact:hierInterface busRef="MirroredMaster0"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredMaster1</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel1" busRef="MirroredMaster"/>
+         <ipxact:hierInterface busRef="MirroredMaster1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>MirroredMaster2</ipxact:name>
+         <ipxact:activeInterface componentRef="uahbSlaveChannel2" busRef="MirroredMaster"/>
+         <ipxact:hierInterface busRef="MirroredMaster2"/>
+      </ipxact:interconnection>
+   </ipxact:interconnections>
+</ipxact:design>

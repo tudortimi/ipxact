@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : Int.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.00
+//
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2004, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, WITHOUT
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:abstractionDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                              xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>busdef.leon2</ipxact:library>
+   <ipxact:name>IntProc_rtl</ipxact:name>
+   <ipxact:version>v1.0</ipxact:version>
+   <ipxact:busType vendor="spiritconsortium.org" library="busdef.leon2" name="IntProc"
+                   version="v1.0"/>
+   <ipxact:ports>
+      <ipxact:port>
+         <ipxact:logicalName>IRL</ipxact:logicalName>
+         <ipxact:wire>
+            <ipxact:onMaster>
+               <ipxact:width>4</ipxact:width>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:onMaster>
+            <ipxact:onSlave>
+               <ipxact:width>4</ipxact:width>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:onSlave>
+            <ipxact:defaultValue>0</ipxact:defaultValue>
+         </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+         <ipxact:logicalName>IRQVEC</ipxact:logicalName>
+         <ipxact:wire>
+            <ipxact:onMaster>
+               <ipxact:width>4</ipxact:width>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:onMaster>
+            <ipxact:onSlave>
+               <ipxact:width>4</ipxact:width>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:onSlave>
+         </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+         <ipxact:logicalName>INTack</ipxact:logicalName>
+         <ipxact:wire>
+            <ipxact:onMaster>
+               <ipxact:width>1</ipxact:width>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:onMaster>
+            <ipxact:onSlave>
+               <ipxact:width>1</ipxact:width>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:onSlave>
+         </ipxact:wire>
+      </ipxact:port>
+   </ipxact:ports>
+</ipxact:abstractionDefinition>

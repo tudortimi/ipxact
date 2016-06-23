@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : ahbliteram.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.2
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>ahbliteram</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>AHBClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>AHBReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>AHBLiteSlave</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA3" name="AHBLite" version="r1p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA3" name="AHBLite_rtl" version="r1p0_6"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hsel_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>haddr_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hwrite_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HTRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>htrans_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HSIZE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hsize_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HBURST</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hburst_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hwdata_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HPROT</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hprot_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HREADY</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hreadyi_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HMASTLOCK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hmastlock_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HREADYOUT</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hreadyo_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HRESP</ipxact:name>
+                        <ipxact:range>
+                           <ipxact:left>0</ipxact:left>
+                           <ipxact:right>0</ipxact:right>
+                        </ipxact:range>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hresp_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>hrdata_s</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HCLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>HRESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="ambaAHB"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>ambaAHB</ipxact:name>
+         <ipxact:bank bankAlignment="parallel">
+            <ipxact:name>defaultid4489915</ipxact:name>
+            <ipxact:baseAddress name="memoryBaseAddress">memoryBaseAddress</ipxact:baseAddress>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4489935</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange0" type="longint">
+                     <ipxact:name>addressRange0</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4489959</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange1" type="longint">
+                     <ipxact:name>addressRange1</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4489982</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange2" type="longint">
+                     <ipxact:name>addressRange2</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4490005</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange3" type="longint">
+                     <ipxact:name>addressRange3</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:parameters>
+               <ipxact:parameter parameterId="memoryBaseAddress" resolve="user" type="longint"
+                                 configGroups="requiredConfig"
+                                 prompt="Base address offset:">
+                  <ipxact:name>memoryBaseAddress</ipxact:name>
+                  <ipxact:value>0</ipxact:value>
+               </ipxact:parameter>
+            </ipxact:parameters>
+         </ipxact:bank>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>vhdlSource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlSource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlSource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>leon2AhbLiteram</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter dataType="integer">
+                  <ipxact:name>abits</ipxact:name>
+                  <ipxact:value>addressBusSize</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>clk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hsel_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>haddr_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hwrite_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>htrans_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>1</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hsize_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>2</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hburst_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>2</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hwdata_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hprot_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>3</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hreadyi_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hmastlock_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hreadyo_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hresp_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>hrdata_s</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>addressWidthChoice</ipxact:name>
+         <ipxact:enumeration text="1K">8</ipxact:enumeration>
+         <ipxact:enumeration text="2K">9</ipxact:enumeration>
+         <ipxact:enumeration text="4K">10</ipxact:enumeration>
+         <ipxact:enumeration text="8K">11</ipxact:enumeration>
+         <ipxact:enumeration text="16K">12</ipxact:enumeration>
+         <ipxact:enumeration text="32K">13</ipxact:enumeration>
+         <ipxact:enumeration text="64K">14</ipxact:enumeration>
+         <ipxact:enumeration text="128K">15</ipxact:enumeration>
+         <ipxact:enumeration text="256K">16</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>../../common/target.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/device.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/config.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/sparcv8.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/iface.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/amba.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/macro.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_generic.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/multlib.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_map.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/ahbram.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/leon2AhbLiteram.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2ahbram_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="addressBusSize" resolve="user" choiceRef="addressWidthChoice"
+                        configGroups="requiredConfig"
+                        prompt="RAM Depth (bytes):">
+         <ipxact:name>abits</ipxact:name>
+         <ipxact:value>10</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

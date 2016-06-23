@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : ahbSparseBridge.xml
+// Author : SPIRIT Schema Working Group 
+// Version: 1.2
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>ahbbusSparseBridge33</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBslave0</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster0"/>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster1"/>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster2"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBslave1</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster0"/>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster2"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBslave2</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster0"/>
+            <ipxact:transparentBridge masterRef="ambaAHBmaster1"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBmaster0</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master>
+            <ipxact:addressSpaceRef addressSpaceRef="ahb0">
+               <ipxact:baseAddress>masterBase0</ipxact:baseAddress>
+            </ipxact:addressSpaceRef>
+         </ipxact:master>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterBase0" resolve="generated" type="longint">
+               <ipxact:name>masterBase0</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBmaster1</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master>
+            <ipxact:addressSpaceRef addressSpaceRef="ahb1">
+               <ipxact:baseAddress>masterBase1</ipxact:baseAddress>
+            </ipxact:addressSpaceRef>
+         </ipxact:master>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterBase1" resolve="generated" type="longint">
+               <ipxact:name>masterBase1</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAHBmaster2</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="AHB_rtl" version="r2p0_6"/>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master>
+            <ipxact:addressSpaceRef addressSpaceRef="ahb2">
+               <ipxact:baseAddress>masterBase2</ipxact:baseAddress>
+            </ipxact:addressSpaceRef>
+         </ipxact:master>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterBase2" resolve="generated" type="longint">
+               <ipxact:name>masterBase2</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:addressSpaces>
+      <ipxact:addressSpace>
+         <ipxact:name>ahb0</ipxact:name>
+         <ipxact:range>masterRange0</ipxact:range>
+         <ipxact:width>32</ipxact:width>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterRange0" resolve="generated" type="longint">
+               <ipxact:name>masterRange0</ipxact:name>
+               <ipxact:value>4 * (2 ** 30)</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:addressSpace>
+      <ipxact:addressSpace>
+         <ipxact:name>ahb1</ipxact:name>
+         <ipxact:range>masterRange1</ipxact:range>
+         <ipxact:width>32</ipxact:width>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterRange1" resolve="generated" type="longint">
+               <ipxact:name>masterRange1</ipxact:name>
+               <ipxact:value>4 * (2 ** 30)</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:addressSpace>
+      <ipxact:addressSpace>
+         <ipxact:name>ahb2</ipxact:name>
+         <ipxact:range>masterRange2</ipxact:range>
+         <ipxact:width>32</ipxact:width>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="masterRange2" resolve="generated" type="longint">
+               <ipxact:name>masterRange2</ipxact:name>
+               <ipxact:value>4 * (2 ** 30)</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:addressSpace>
+   </ipxact:addressSpaces>
+</ipxact:component>

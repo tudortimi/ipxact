@@ -1,0 +1,51 @@
+                 Table file format for processor BFM
+
+The table file can describe 3 different AHB functions, read single word,
+write single word and idle cycles. The basic format of the file starts with
+a single letter in the first column of the file to describe the command.
+"R" for a read, "W" for a write and "I" for idle cycles. Each of these
+different commands the take a variable number of additional parameters.
+
+The write single word command takes 2 additional agrements, the first one
+being the address of the data to write and the second being the data to
+write. Both of these arguments must be specified in hex format without any
+base designation and must be 8 digits long. Below is an example to write
+the word 0x00FFFF00 to address 0x00010000.
+
+W 00010000 00FFFF00
+
+The read single word command has 2 formats, one with a mask value and one
+without a mask value. The basic read command takes the same 2 agruments as
+the as the write command. The first one being the address of the data to
+write and the second being the data to read. Both of these arguments must
+be specified in hex format without any base designation and must be 8
+digits long. Below is an example to read the word 0x00FFFF00 from address
+0x00010000.
+
+R 00010000 00FFFF00
+
+The second form of the read single word command add an additional third
+argument, in the same hex format, that is used as a mask when the compare
+is done on the read data. If the bit value for the mask is a ‘1’ then that
+bit is compared to the expected read value. Below is an example to read the
+word 0x??????78 from address 0x00010000 and only compare the lower 8 bits.
+
+R 00010000 F0000078 000000FF
+
+The final command is the idle command. This command simply inserted idle
+cycles between transactions. This command has only one argument. This
+argument is an integer and will be the number of AHB clocks, given to the
+processor model, to wait before performing the next transaction. Below is
+an example of an idle command that waits 128 cycles
+
+I 128
+
+Comments may also be added to the file by starting the line with the
+comment sequence of "--" or at the end of a command by using the same
+comment sequence. Below are some examples of comments.
+
+R 00000000 12345678 W 00000000 0000FFFF  -- This is a comment -- This is
+also a comment I 128
+
+
+

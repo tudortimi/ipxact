@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Christophe Amerijckx (STMicroelectronics) -->
+<!--
+// Description : uartHierDesign.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.0
+//
+// Copyright (c) 2006 SPIRIT.  All rights reserved.
+// www.spiritconsortium.com
+//
+// THIS WORK FORMS PART OF A SPIRIT CONSORTIUM SPECIFICATION.  
+// THIS WORK CONTAINS TRADE SECRETS AND PROPRIETARY INFORMATION 
+// WHICH IS THE EXCLUSIVE PROPERTY OF INDIVIDUAL MEMBERS OF THE 
+// SPIRIT CONSORTIUM. USE OF THESE MATERIALS ARE GOVERNED BY 
+// THE LEGAL TERMS AND CONDITIONS OUTLINED IN THE THE SPIRIT 
+// SPECIFICATION DISCLAIMER AVAILABLE FROM
+// www.spiritconsortium.org
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>uartHierDesign</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_uart</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="uart" version="1.2"/>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:adHocConnections>
+      <ipxact:adHocConnection>
+         <ipxact:name>scaler</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_uart" portRef="scaler"/>
+            <ipxact:externalPortReference portRef="scaler"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>txen</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_uart" portRef="txen"/>
+            <ipxact:externalPortReference portRef="txen"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>flow</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_uart" portRef="flow"/>
+            <ipxact:externalPortReference portRef="flow"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+   </ipxact:adHocConnections>
+</ipxact:design>

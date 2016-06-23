@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:abstractor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                   xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>NXP.com</ipxact:vendor>
+   <ipxact:library>ganga</ipxact:library>
+   <ipxact:name>scmlAdaptor</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:abstractorMode>slave</ipxact:abstractorMode>
+   <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+   <ipxact:abstractorInterfaces>
+      <ipxact:abstractorInterface>
+         <ipxact:name>APB_Slave</ipxact:name>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="abstractiondef.tlm" name="apb_pv"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+      </ipxact:abstractorInterface>
+      <ipxact:abstractorInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="SCML" name="APB_PV" vendor="coware.com" version="1.1"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>scml_master_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+      </ipxact:abstractorInterface>
+   </ipxact:abstractorInterfaces>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:envIdentifier>systemCSource:OSCI:v21</ipxact:envIdentifier>
+            <ipxact:envIdentifier>systemCSource:NCSim:ncsc</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>PVPVT</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:language>systemc2.1</ipxact:language>
+            <ipxact:moduleName>scmlAdaptor</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>scmlAdaptorFileSet</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>apb_slave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>scml_master_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>PVInitiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>PV/PV.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">SCML</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DT</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>AT</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>scml_master_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>scmlAdaptorFileSet</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>./inc/scmladaptor.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+</ipxact:abstractor>

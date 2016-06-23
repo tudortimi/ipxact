@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : ahbbus.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.2
+//
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>apbbus1</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredMaster</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="APB_rtl" version="r2p0_4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PENABLE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata_mst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>MirroredSlave0</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="APB_rtl" version="r2p0_4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PENABLE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata_slv0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress maximum="262144">remapAddressSlv0</ipxact:remapAddress>
+               <ipxact:range>rangeSlv0</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv0" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Starting Address (18 bits):"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv0</ipxact:name>
+               <ipxact:value>'h0000</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv0" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Range:">
+               <ipxact:name>rangeSlv0</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:channels>
+      <ipxact:channel>
+         <ipxact:name>APBChannel</ipxact:name>
+         <!--IP-XACT XSLT Warning#2:Removing element maxSlaves from channel-->
+<ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredMaster</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>MirroredSlave0</ipxact:localName>
+         </ipxact:busInterfaceRef>
+      </ipxact:channel>
+   </ipxact:channels>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>leon2Apbbus1(struct)</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter dataType="integer">
+                  <ipxact:name>start_addr_slv0</ipxact:name>
+                  <ipxact:value>start_addr_slv0</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter dataType="integer">
+                  <ipxact:name>range_slv0</ipxact:name>
+                  <ipxact:value>size_addr_slv0</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter dataType="integer">
+                  <ipxact:name>number_ports</ipxact:name>
+                  <ipxact:value>number_ports</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>psel_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata_mst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>psel_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata_slv0</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>BooleanChoices</ipxact:name>
+         <ipxact:enumeration text="false">false</ipxact:enumeration>
+         <ipxact:enumeration text="true">true</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>../../common/target.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/device.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/config.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/sparcv8.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/iface.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/amba.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/ambacomp.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/macro.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_generic.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_atc25.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_atc35.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_fs90.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_umc18.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_virtex.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_tsmc25.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_proasic.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_axcel.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/multlib.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../common/tech_map.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/apbbus.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/leon2Apbbus1.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>leon2apbbus_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:description>1 master, 1 slave APB channel</ipxact:description>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="start_addr_slv0">
+         <ipxact:name>start_addr_slv0</ipxact:name>
+         <ipxact:value>remapAddressSlv0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="size_addr_slv0">
+         <ipxact:name>range_slv0</ipxact:name>
+         <ipxact:value>rangeSlv0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="number_ports">
+         <ipxact:name>number_ports</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

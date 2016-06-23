@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Christophe Amerijckx (STMicroelectronics) -->
+<!--
+// Description : rgu.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.2
+//
+// Copyright (c) 2007 SPIRIT.  All rights reserved.
+// www.spiritconsortium.org
+//
+// THIS WORK FORMS PART OF A SPIRIT CONSORTIUM SPECIFICATION.  
+// THIS WORK CONTAINS TRADE SECRETS AND PROPRIETARY INFORMATION 
+// WHICH IS THE EXCLUSIVE PROPERTY OF INDIVIDUAL MEMBERS OF THE 
+// SPIRIT CONSORTIUM. USE OF THESE MATERIALS ARE GOVERNED BY 
+// THE LEGAL TERMS AND CONDITIONS OUTLINED IN THE THE SPIRIT 
+// SPECIFICATION DISCLAIMER AVAILABLE FROM
+// www.spiritconsortium.org
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>rgu</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>IPClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ipclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>MainReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstin_an</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="APB_rtl" version="r2p0_4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PENABLE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PCLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="ambaAPB"/>
+         </ipxact:slave>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset0_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset0_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset0_2</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset0_3</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset1_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>1</ipxact:left>
+                              <ipxact:right>1</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset1_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>1</ipxact:left>
+                              <ipxact:right>1</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset2_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>2</ipxact:left>
+                              <ipxact:right>2</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset2_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>2</ipxact:left>
+                              <ipxact:right>2</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset3_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>3</ipxact:left>
+                              <ipxact:right>3</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset3_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>3</ipxact:left>
+                              <ipxact:right>3</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset4_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>4</ipxact:left>
+                              <ipxact:right>4</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset4_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>4</ipxact:left>
+                              <ipxact:right>4</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset5_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>5</ipxact:left>
+                              <ipxact:right>5</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset5_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>5</ipxact:left>
+                              <ipxact:right>5</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset6_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>6</ipxact:left>
+                              <ipxact:right>6</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset6_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>6</ipxact:left>
+                              <ipxact:right>6</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset7_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>7</ipxact:left>
+                              <ipxact:right>7</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>reset7_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rstout_an</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>7</ipxact:left>
+                              <ipxact:right>7</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:bank bankAlignment="serial">
+            <ipxact:name>defaultid4490635</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:addressBlock>
+               <ipxact:name>resetDelays</ipxact:name>
+               <ipxact:range>32</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>register</ipxact:usage>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:register>
+                  <ipxact:name>reset0Delay</ipxact:name>
+                  <ipxact:addressOffset>'h0</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 0, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset1Delay</ipxact:name>
+                  <ipxact:addressOffset>'h4</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h1) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 1, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h1) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset2Delay</ipxact:name>
+                  <ipxact:addressOffset>'h8</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h2) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 2, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h2) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset3Delay</ipxact:name>
+                  <ipxact:addressOffset>'hC</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h4) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 3, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h4) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset4Delay</ipxact:name>
+                  <ipxact:addressOffset>'h10</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h8) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 4, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h8) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset5Delay</ipxact:name>
+                  <ipxact:addressOffset>'h14</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h10) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 5, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h10) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset6Delay</ipxact:name>
+                  <ipxact:addressOffset>'h18</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h20) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 6, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h20) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+               <ipxact:register>
+                  <ipxact:name>reset7Delay</ipxact:name>
+                  <ipxact:addressOffset>'h1C</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>Reserved</ipxact:name>
+                     <ipxact:description>Reserved</ipxact:description>
+                     <ipxact:bitOffset>8</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h40) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>24</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+                  <ipxact:field>
+                     <ipxact:name>delay</ipxact:name>
+                     <ipxact:description>Delay value for reset 7, 0=no delay, 1=delay by 1 ipclk, 2=delay by 2 ipclk, ...</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h40) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>8</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>EEPROM</ipxact:name>
+               <ipxact:range>32</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>register</ipxact:usage>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:register>
+                  <ipxact:name>eeprom</ipxact:name>
+                  <ipxact:dim>8</ipxact:dim>
+                  <ipxact:addressOffset>'h0</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:volatile>false</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>data</ipxact:name>
+                     <ipxact:description>Scratch memory, EEPROM</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h0) / $pow(2,0) % $pow(2,32)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>32</ipxact:bitWidth>
+                     <ipxact:access>read-write</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>Reserved</ipxact:name>
+               <ipxact:range>4028</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>reserved</ipxact:usage>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-only</ipxact:access>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>idAddressBlock</ipxact:name>
+               <ipxact:range>4</ipxact:range>
+               <ipxact:width>32</ipxact:width>
+               <ipxact:usage>register</ipxact:usage>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:register>
+                  <ipxact:name>IDReg</ipxact:name>
+                  <ipxact:description>ID register</ipxact:description>
+                  <ipxact:addressOffset>'h0</ipxact:addressOffset>
+                  <ipxact:size>32</ipxact:size>
+                  <ipxact:access>read-only</ipxact:access>
+                  <ipxact:field>
+                     <ipxact:name>ID</ipxact:name>
+                     <ipxact:description>ID Field</ipxact:description>
+                     <ipxact:bitOffset>0</ipxact:bitOffset>
+                     <ipxact:resets>
+                        <ipxact:reset>
+                           <ipxact:value>('h00000D01) / $pow(2,0) % $pow(2,32)</ipxact:value>
+                        </ipxact:reset>
+                     </ipxact:resets>
+                     <ipxact:bitWidth>32</ipxact:bitWidth>
+                     <ipxact:access>read-only</ipxact:access>
+                  </ipxact:field>
+               </ipxact:register>
+            </ipxact:addressBlock>
+         </ipxact:bank>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>rgu(rtl)</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay0</ipxact:name>
+                  <ipxact:value>delay0</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay1</ipxact:name>
+                  <ipxact:value>delay1</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay2</ipxact:name>
+                  <ipxact:value>delay2</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay3</ipxact:name>
+                  <ipxact:value>delay3</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay4</ipxact:name>
+                  <ipxact:value>delay4</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay5</ipxact:name>
+                  <ipxact:value>delay5</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay6</ipxact:name>
+                  <ipxact:value>delay6</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" minimum="0" maximum="255" dataType="integer">
+                  <ipxact:name>delay7</ipxact:name>
+                  <ipxact:value>delay7</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>pclk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>presetn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>psel</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>11</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ipclk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="ipclk">
+                        <ipxact:clockPeriod>ClockPeriod</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>ClockPulseOffset</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>ClockPulseValue</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>ClockPulseDuration</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rstin_an</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:singleShotDriver>
+                        <ipxact:singleShotOffset>500</ipxact:singleShotOffset>
+                        <ipxact:singleShotValue>1</ipxact:singleShotValue>
+                        <ipxact:singleShotDuration>1000</ipxact:singleShotDuration>
+                     </ipxact:singleShotDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rstout_an</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>7</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/rgu.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>rgu_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="delay0" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 0 (reset value in XML will be incorrrect if any of these are changed)"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay0</ipxact:name>
+         <ipxact:value>0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay1" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 1"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay1</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay2" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 2"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay2</ipxact:name>
+         <ipxact:value>2</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay3" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 3"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay3</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay4" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 4"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay4</ipxact:name>
+         <ipxact:value>8</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay5" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 5"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay5</ipxact:name>
+         <ipxact:value>'h10</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay6" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 6"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay6</ipxact:name>
+         <ipxact:value>'h20</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="delay7" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="Delay for reset output 7"
+                        minimum="0"
+                        maximum="255">
+         <ipxact:name>delay7</ipxact:name>
+         <ipxact:value>'h40</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseValue" resolve="user" type="longint"
+                        prompt="Clock Pulse Value:">
+         <ipxact:name>ClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPeriod" resolve="user" type="real"
+                        prompt="Clock Pulse Period:">
+         <ipxact:name>ClockPeriod</ipxact:name>
+         <ipxact:value>100</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseDuration" resolve="user" type="real"
+                        prompt="Clock Pulse Duration:">
+         <ipxact:name>ClockPulseDuration</ipxact:name>
+         <ipxact:value>50</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseOffset" resolve="user" type="real"
+                        prompt="Clock Pulse Offset:">
+         <ipxact:name>ClockPulseOffset</ipxact:name>
+         <ipxact:value>50</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

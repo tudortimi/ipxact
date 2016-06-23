@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: Leon2Platform.xml
+// Author:      The SPIRIT Consortium
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+//
+// Copyright (c) 2009 The SPIRIT Consortium.
+//
+// This work forms part of a deliverable of The SPIRIT Consortium.
+//
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+//
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+//
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at
+// http://www.spiritconsortium.org/about/contact_us/
+//
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>Leon2Platform</ipxact:name>
+   <ipxact:version>3.0</ipxact:version>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>spirit-design</ipxact:name>
+            <ipxact:envIdentifier>::Hierarchy</ipxact:envIdentifier>
+            <ipxact:designInstantiationRef>spirit-design</ipxact:designInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:designInstantiation>
+            <ipxact:name>spirit-design</ipxact:name>
+            <ipxact:designRef vendor="spiritconsortium.org" library="Leon2RTL" name="design_Leon2Platform"
+                              version="3.0"/>
+         </ipxact:designInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>clkin</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="clk">
+                        <ipxact:clockPeriod>100</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>50</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>1</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>50</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rstin_an</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:singleShotDriver>
+                        <ipxact:singleShotOffset>500</ipxact:singleShotOffset>
+                        <ipxact:singleShotValue>1</ipxact:singleShotValue>
+                        <ipxact:singleShotDuration>1000</ipxact:singleShotDuration>
+                     </ipxact:singleShotDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>SimDone</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>source-code</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/Leon2Platform_ent.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>work</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/Leon2Platform_pack.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>work</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/Leon2Platform_arch.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>work</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:description>System3 same as System1 except uses ahbbus with the allLogicalDirectionsAllowed and apbbus with phantom ports</ipxact:description>
+</ipxact:component>

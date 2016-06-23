@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+copyright (c) The SPIRIT Consortium.  All rights reserved.
+www.spiritconsortium.org
+ 
+THIS WORK FORMS PART OF A SPIRIT CONSORTIUM SPECIFICATION.
+USE OF THESE MATERIALS ARE GOVERNED BY
+THE LEGAL TERMS AND CONDITIONS OUTLINED IN THE SPIRIT
+SPECIFICATION DISCLAIMER AVAILABLE FROM
+www.spiritconsortium.org
+ 
+This source file is provided on an AS IS basis. The SPIRIT Consortium disclaims 
+ANY WARRANTY EXPRESS OR IMPLIED INCLUDING ANY WARRANTY OF
+MERCHANTABILITY AND FITNESS FOR USE FOR A PARTICULAR PURPOSE. 
+The user of the source file shall indemnify and hold The SPIRIT Consortium harmless
+from any damages or liability arising out of the use thereof or the performance or
+implementation or partial implementation of the schema.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>NXP.com</ipxact:vendor>
+   <ipxact:library>ganga</ipxact:library>
+   <ipxact:name>serial_device</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>SerialOut</ipxact:name>
+         <ipxact:busType library="busdef.generic" name="serial" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="serial_pv" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RW_TRANSACTION</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pSerialOut</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>SerialIn</ipxact:name>
+         <ipxact:busType library="busdef.generic" name="serial" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="serial_pv" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RW_TRANSACTION</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pSerialIn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:envIdentifier>systemCSource:OSCI:v21</ipxact:envIdentifier>
+            <ipxact:envIdentifier>systemCSource:NCSim:ncsc</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>PVPVT</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:language>systemc2.1</ipxact:language>
+            <ipxact:moduleName>SerialDevice</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>serialDeviceFileSet</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>pSerialOut</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>sc_port</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName>tlm::tlm_blocking_put_if</ipxact:typeName>
+                           <ipxact:typeDefinition>tlm_interfaces/tlm_core_ifs.h</ipxact:typeDefinition>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DATATYPE</ipxact:name>
+                                 <ipxact:value>SERIAL_DATA_STRUCTURE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>pSerialOut</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pSerialIn</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>sc_export</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName>tlm::tlm_blocking_put_if</ipxact:typeName>
+                           <ipxact:typeDefinition>tlm_interfaces/tlm_core_ifs.h</ipxact:typeDefinition>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DATATYPE</ipxact:name>
+                                 <ipxact:value>SERIAL_DATA_STRUCTURE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>pSerialIn</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>serialDeviceFileSet</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>./inc/serial_device.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>serialDevice</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+</ipxact:component>

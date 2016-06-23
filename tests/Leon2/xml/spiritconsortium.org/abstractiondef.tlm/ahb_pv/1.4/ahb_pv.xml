@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+  -->
+<!-- SPIRIT TLM PV AHB AbstractionDef -->
+<ipxact:abstractionDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                              xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>abstractiondef.tlm</ipxact:library>
+   <ipxact:name>ahb_pv</ipxact:name>
+   <ipxact:version>1.4</ipxact:version>
+   <ipxact:busType vendor="amba.com" library="AMBA2" name="AHB" version="r2p0_6"/>
+   <ipxact:ports>
+      <ipxact:port>
+         <ipxact:logicalName>PV_TRANS</ipxact:logicalName>
+         <ipxact:transactional>
+            <ipxact:qualifier>
+               <ipxact:isAddress>true</ipxact:isAddress>
+               <ipxact:isData>true</ipxact:isData>
+            </ipxact:qualifier>
+            <ipxact:onMaster>
+               <ipxact:presence>required</ipxact:presence>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:protocol>
+                  <ipxact:protocolType custom="pv_initiator_port">custom</ipxact:protocolType>
+               </ipxact:protocol>
+            </ipxact:onMaster>
+            <ipxact:onSlave>
+               <ipxact:presence>required</ipxact:presence>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:protocol>
+                  <ipxact:protocolType custom="pv_target_port">custom</ipxact:protocolType>
+               </ipxact:protocol>
+            </ipxact:onSlave>
+         </ipxact:transactional>
+      </ipxact:port>
+   </ipxact:ports>
+</ipxact:abstractionDefinition>

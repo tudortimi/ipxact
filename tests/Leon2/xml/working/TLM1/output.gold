@@ -1,0 +1,134 @@
+-----------------------------
+Elaborating
+-----------------------------
+top_TLM.uahbbus module created
+top_TLM.uapbSubSystem.i_apbmst module created
+top_TLM.uapbSubSystem.i_apbbus module created
+top_TLM.udma module created - little endian
+top_TLM.uproc constructed.
+top_TLM.uahbram constructed.
+top_TLM.uahbbus: mapfile "leon2AhbBus.map" loaded
+top_TLM.uahbbus: End of Elaboration: 2 target(s) connected
+top_TLM.uapbSubSystem.i_apbmst: mapfile "leon2ApbMst.map" loaded
+top_TLM.uapbSubSystem.i_apbmst: End of Elaboration: 1 target(s) connected
+top_TLM.uapbSubSystem.i_apbmst constructed.
+top_TLM.uapbSubSystem.i_apbbus: mapfile "leon2ApbBus.map" loaded
+top_TLM.uapbSubSystem.i_apbbus: End of Elaboration: 6 target(s) connected
+top_TLM.uapbSubSystem.i_apbbus constructed.
+top_TLM.uapbSubSystem.i_irqctrl constructed.
+top_TLM.uapbSubSystem.i_timers constructed.
+top_TLM.uproc   Reset	At time 0 s
+conv1: bool2sclv value=0 at time 0 s
+conv1: bool2sclv value=1 at time 10 ns
+top_TLM.urgu: Reset 0 deasserted at time 60 ns
+-----------------------------
+Ready to start the simulation
+-----------------------------
+[top_TLM.uproc]: external     WRITE data : 0x7fffffff to address 	0x80	At time 70 ns
+top_TLM.urgu: Reset 0x1 deasserted at time 100 ns
+top_TLM.urgu: Reset 0x2 deasserted at time 180 ns
+top_TLM.urgu: Reset 0x3 deasserted at time 340 ns
+top_TLM.urgu: Reset 0x4 deasserted at time 660 ns
+top_TLM.urgu: Reset 0x5 deasserted at time 1300 ns
+top_TLM.urgu: Reset 0x6 deasserted at time 2580 ns
+[top_TLM.uproc]: stayed       IDLE   for : 128 clock cycles	At time 2640 ns
+[top_TLM.uproc]: external     WRITE data : 0x7fffffff to address 	0x84	At time 2660 ns
+[top_TLM.uproc]: external     READ  data : 0x7fffffff from address 	0x80	At time 2680 ns
+[top_TLM.uproc]: external     READ  data : 0x7fffffff from address 	0x84	At time 2700 ns
+[top_TLM.uproc]: external     WRITE data : 0 to address 	0x30006000	At time 2720 ns
+[top_TLM.uproc]: external     WRITE data : 0xff0 to address 	0x30006000	At time 2740 ns
+[top_TLM.uproc]: external     READ  data : 0xff0 from address 	0x30006000	At time 2760 ns
+[top_TLM.uproc]: local memory WRITE data : 0x7fffffff at address 	0x10000000	At time 2780 ns
+[top_TLM.uproc]: local memory WRITE data : 0 at address 	0x10000004	At time 2800 ns
+[top_TLM.uproc]: local memory READ  data : 0x7fffffff from address 	0x10000000	At time 2820 ns
+[top_TLM.uproc]: external     READ  data : 0xd00 from address 	0x30004ffc	At time 2840 ns
+[top_TLM.uproc]: external     READ  data : 0xd01 from address 	0x30005ffc	At time 2860 ns
+[top_TLM.uproc]: external     WRITE data : 0x2 to address 	0x30004000	At time 2880 ns
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x1 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x2 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x3 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x4 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x5 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x6 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x7 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x8 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0x9 enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xa enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xb enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xc enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xd enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xe enabled: 
+top_TLM.uapbSubSystem.i_irqctrl    Interrupt 0xf enabled: 
+[top_TLM.uproc]: external     WRITE data : 0xfffe to address 	0x30000000	At time 2940 ns
+top_TLM.uapbSubSystem.i_irqctrl interrupt set to level 0 At time 2940 ns
+[top_TLM.uproc]: external     WRITE data : 0x1f to address 	0x30001004	At time 3020 ns
+top_TLM.uapbSubSystem.i_timers Timer0 forced reload
+[top_TLM.uproc]: external     WRITE data : 0x5 to address 	0x30001008	At time 3100 ns
+... T0=0x1f At Time 3180 ns
+[top_TLM.uproc]: external     READ  data : 0x1 from address 	0x30001008	At time 3180 ns
+... T0=0x1e At Time 3260 ns
+... T0=0x1d At Time 3340 ns
+... T0=0x1c At Time 3420 ns
+... T0=0x1b At Time 3500 ns
+... T0=0x1a At Time 3580 ns
+... T0=0x19 At Time 3660 ns
+... T0=0x18 At Time 3740 ns
+... T0=0x17 At Time 3820 ns
+... T0=0x16 At Time 3900 ns
+... T0=0x15 At Time 3980 ns
+... T0=0x14 At Time 4060 ns
+... T0=0x13 At Time 4140 ns
+... T0=0x12 At Time 4220 ns
+... T0=0x11 At Time 4300 ns
+... T0=0x10 At Time 4380 ns
+... T0=0xf At Time 4460 ns
+... T0=0xe At Time 4540 ns
+... T0=0xd At Time 4620 ns
+... T0=0xc At Time 4700 ns
+... T0=0xb At Time 4780 ns
+... T0=0xa At Time 4860 ns
+... T0=0x9 At Time 4940 ns
+... T0=0x8 At Time 5020 ns
+... T0=0x7 At Time 5100 ns
+... T0=0x6 At Time 5180 ns
+... T0=0x5 At Time 5260 ns
+... T0=0x4 At Time 5340 ns
+... T0=0x3 At Time 5420 ns
+... T0=0x2 At Time 5500 ns
+... T0=0x1 At Time 5580 ns
+top_TLM.uapbSubSystem.i_irqctrl interrupt set to level 0x4 At time 5580 ns
+top_TLM.uproc   Got interrupt. Send ack and reset SubSystem Interrupt register
+top_TLM.uapbSubSystem.i_irqctrl got interrupt ack
+top_TLM.uapbSubSystem.i_irqctrl interrupt set to level 0 At time 5580 ns
+top_TLM.urgu: Reset 0x7 deasserted at time 11900 ns
+[top_TLM.uproc]: stayed       IDLE   for : 1044 clock cycles	At time 86780 ns
+[top_TLM.uproc]: external     WRITE data : 0x1 to address 	0	At time 86860 ns
+[top_TLM.uproc]: external     WRITE data : 0x10 to address 	0x4	At time 86940 ns
+[top_TLM.uproc]: external     WRITE data : 0x100 to address 	0x8	At time 87020 ns
+[top_TLM.uproc]: external     WRITE data : 0x1000 to address 	0xc	At time 87100 ns
+[top_TLM.uproc]: external     WRITE data : 0x10000 to address 	0x10	At time 87180 ns
+[top_TLM.uproc]: external     WRITE data : 0x100000 to address 	0x14	At time 87260 ns
+[top_TLM.uproc]: external     WRITE data : 0x1000000 to address 	0x18	At time 87340 ns
+[top_TLM.uproc]: external     WRITE data : 0x10000000 to address 	0x1c	At time 87420 ns
+[top_TLM.uproc]: external     WRITE data : 0 to address 	0x30007000	At time 87500 ns
+[top_TLM.uproc]: external     WRITE data : 0x1000 to address 	0x30007004	At time 87580 ns
+[top_TLM.uproc]: external     WRITE data : 0x1a08 to address 	0x30007008	At time 87660 ns
+DEBUG	top_TLM.udma: dma transfer started. Source address: 0 - destination address: 0x1000
+DEBUG	top_TLM.udma: rise transfer end IRQ 
+top_TLM.uapbSubSystem.i_irqctrl interrupt set to level 0x5 At time 87660 ns
+top_TLM.uproc   Got interrupt. Send ack and reset SubSystem Interrupt register
+top_TLM.uapbSubSystem.i_irqctrl got interrupt ack
+top_TLM.uapbSubSystem.i_irqctrl interrupt set to level 0 At time 87660 ns
+[top_TLM.uproc]: stayed       IDLE   for : 2024 clock cycles	At time 249660 ns
+[top_TLM.uproc]: external     READ  data : 0x1 from address 	0x1000	At time 249740 ns
+[top_TLM.uproc]: external     READ  data : 0x10 from address 	0x1004	At time 249820 ns
+[top_TLM.uproc]: external     READ  data : 0x100 from address 	0x1008	At time 249900 ns
+[top_TLM.uproc]: external     READ  data : 0x1000 from address 	0x100c	At time 249980 ns
+[top_TLM.uproc]: external     READ  data : 0x10000 from address 	0x1010	At time 250060 ns
+[top_TLM.uproc]: external     READ  data : 0x100000 from address 	0x1014	At time 250140 ns
+[top_TLM.uproc]: external     READ  data : 0x1000000 from address 	0x1018	At time 250220 ns
+[top_TLM.uproc]: external     READ  data : 0x10000000 from address 	0x101c	At time 250300 ns
+[top_TLM.uproc]: Table Finished 	At time 250380 ns
+-----------------------------
+Simulation done
+-----------------------------

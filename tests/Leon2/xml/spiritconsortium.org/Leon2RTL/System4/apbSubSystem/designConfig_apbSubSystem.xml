@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : designConfig_apbSubSystem.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.0
+//
+// Copyright (c) 2007 SPIRIT.  All rights reserved.
+// www.spiritconsortium.com
+//
+// THIS WORK FORMS PART OF A SPIRIT CONSORTIUM SPECIFICATION.  
+// THIS WORK CONTAINS TRADE SECRETS AND PROPRIETARY INFORMATION 
+// WHICH IS THE EXCLUSIVE PROPERTY OF INDIVIDUAL MEMBERS OF THE 
+// SPIRIT CONSORTIUM. USE OF THESE MATERIALS ARE GOVERNED BY 
+// THE LEGAL TERMS AND CONDITIONS OUTLINED IN THE THE SPIRIT 
+// SPECIFICATION DISCLAIMER AVAILABLE FROM
+// www.spiritconsortium.org
+-->
+<ipxact:designConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                            xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>designConfig_apbSubSystem</ipxact:name>
+   <ipxact:version>4.0</ipxact:version>
+   <ipxact:designRef vendor="spiritconsortium.org" library="Leon2RTL" name="design_apbSubSystem"
+                     version="4.0"/>
+   <ipxact:interconnectionConfiguration>
+      <ipxact:interconnectionRef>defaultid4490193</ipxact:interconnectionRef>
+      <ipxact:abstractorInstances>
+         <ipxact:abstractorInstance>
+            <ipxact:instanceName>i_ArmAPB2SpiritAPB</ipxact:instanceName>
+            <ipxact:abstractorRef vendor="spiritconsortium.org" library="Leon2RTL" name="ArmAPB2SpiritAPB"
+                                  version="1.0"/>
+            <ipxact:viewName>vhdlsource</ipxact:viewName>
+         </ipxact:abstractorInstance>
+      </ipxact:abstractorInstances>
+   </ipxact:interconnectionConfiguration>
+   <ipxact:interconnectionConfiguration>
+      <ipxact:interconnectionRef>defaultid4490210</ipxact:interconnectionRef>
+      <ipxact:abstractorInstances>
+         <ipxact:abstractorInstance>
+            <ipxact:instanceName>i_ArmAPB2SpiritAPB_1</ipxact:instanceName>
+            <ipxact:abstractorRef vendor="spiritconsortium.org" library="Leon2RTL" name="ArmAPB2SpiritAPB"
+                                  version="1.0"/>
+            <ipxact:viewName>vhdlsource</ipxact:viewName>
+         </ipxact:abstractorInstance>
+      </ipxact:abstractorInstances>
+   </ipxact:interconnectionConfiguration>
+</ipxact:designConfiguration>

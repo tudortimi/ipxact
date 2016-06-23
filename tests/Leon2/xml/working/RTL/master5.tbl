@@ -1,0 +1,115 @@
+W 00000080 DEADBEEF   -- test to ahbram
+I 128   
+W 00000084 BEEFDEAD
+R 00000080 DEADBEEF
+R 00000084 BEEFDEAD
+W 10000000 ABCD0123   -- local processor memory
+W 10000004 00000000   -- local processor memory
+R 10000000 ABCD0123   -- local processor memory
+--R 90000000 00000000   -- read to invalid address, generates an ERROR
+--R 00000000 00000000   -- check a read of unknowns, generates an ERROR
+R 30004FFC 00000D00   -- check the CGU ID register
+R 30005FFC 00000D01   -- check the RGU ID register
+W 30004000 00000010   -- Set clock to divide by 32
+W 30000000 00000006   -- unmask the timer interrupts
+W 30001004 000000FF   -- load the timer
+W 30001008 00000007   -- enable the timer
+R 30001008 00000007 00000003   -- Read timer with mask
+I 1044                -- wait for interrupt
+W 00000000 00000001   -- setup data for DMA
+W 00000004 00000010
+W 00000008 00000100
+W 0000000C 00001000
+W 00000010 00010000
+W 00000014 00100000
+W 00000018 01000000
+W 0000001C 10000000
+W 30007000 00000000   -- DMA source address
+W 30007004 00001000   -- DMA destination address
+W 30007008 00001F08   -- DMA control - enable, inc=word (1111), length=8= 9 words 
+I 2024
+R 00001000 00000001   -- read data that was DMA moved
+R 00001004 00000010
+R 00001008 00000100
+R 0000100C 00001000
+R 00001010 00010000
+R 00001014 00100000
+R 00001018 01000000
+R 0000101C 10000000
+-- UART TESTS
+W 3000200C 00000001  -- Initialize Uart Scaler Register
+W 3000300C 00000001
+W 30002008 0000004F  -- Enabling Receive and Transmit mode and interrupts
+W 30003008 0000004F
+W 30002000 000000AA  -- Sending data to Uart1 and geting it back from Uart2
+I 256
+R 30003000 000000AA
+W 30003000 00000055  -- Sending data to Uart2 and geting it back from Uart1
+I 256
+R 30002000 00000055
+W B0000080 DEADBEEF   -- test to ahbram across the AHB-AHB bridge
+I 128   
+W B0000084 BEEFDEAD
+R B0000080 DEADBEEF
+R B0000084 BEEFDEAD
+-----------------------------------------------------
+W 30000000 00000000   -- unmask just i2c the interrupts
+R 30008FFC 00000D02   -- check the I2C ID register
+R 3000800C 00000030   -- clkdivhi
+R 30008010 00000030   -- clkdivlo
+W 30004004 00000020   -- Set clock to divide by 64 for i2c
+W 30008008 00000001   -- enable transaction done int
+W 30008000 0000013E   -- start, write, i2caddr=5'b11111
+W 30008000 00000000   -- address msb
+W 30008000 00000010   -- address lsb
+W 30008000 00000000   -- data
+I 15120
+W 30008000 00000004   -- data
+W 30008000 00000040   -- data
+W 30008000 000002FF   -- stop and data
+I 15120
+W 30008004 00000001   -- reset interrupt
+
+W 30008000 0000013E   -- start, write, i2caddr=5'b11111
+W 30008000 00000000   -- address msb
+W 30008000 00000210   -- stop, address lsb
+I 15120
+W 30008000 0000013F   -- start, read, i2caddr=5'b11111
+W 30008000 00000000   -- data false
+I 6000
+R 30008000 00000000   -- data
+W 30008000 00000000   -- data false
+I 6000
+R 30008000 00000004   -- data
+W 30008000 00000000   -- data false
+I 6000
+R 30008000 00000040   -- data
+W 30008000 00000200   -- data false stop
+I 6008
+R 30008000 000000FF   -- data
+I 6000
+-----------------------------------------------------
+W 30008000 0000011E   -- start, write, i2caddr=4'b1111 i2c_gpio
+W 30008000 00000206   -- stop and data
+W 30008000 0000011F   -- start, read, i2caddr=4'b1111
+I 6000
+W 30008000 00000000   -- data false
+W 30008000 00000200   -- data false stop
+I 6000
+I 6000
+I 6000
+R 30008000 00000006   -- data
+R 30008000 00000006   -- data
+-----------------------------------------------------
+W 30000000 00000080   -- unmask just MP3 DMA the interrupts
+W 30004000 00000002   -- Set clock to divide by 4 for AHB/APB
+W 30004008 00000010   -- Set clock to divide by 32 for mp3 
+W 30004008 00000040   -- Set clock to divide by 128 for dac 
+W 90000000 80000000   -- DMA source address
+W 90000004 A0000000   -- DMA destination address
+W 90000008 00001308   -- DMA control - enable, inc=word on src (0011), length=8
+I 2024
+W A0000004 00000001   -- Enable mp3 decoder
+I 42024
+R 90001000 0000008B   -- AHB monitor flags with the last transaction to the ROM from the DMA
+R 90001004 80000024   -- AHB monitor address with the last transaction to the ROM from the DMA

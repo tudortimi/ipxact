@@ -1,0 +1,8 @@
+top_TLM.uapbSubSystem.i_irqctrl.apb_slave_port 	0000 1000
+top_TLM.uapbSubSystem.i_timers.apb_slave_port 	1000 1000
+top_TLM.uapbSubSystem.i_scmladp.apb_slave_port  2000 1000
+top_TLM.uapbSubSystem.pv2tac.tlmpv_slave_port   3000 1000
+top_TLM.ucgu.apb_slave_port 			4000 1000
+top_TLM.urgu.apb_slave_port 			5000 1000
+top_TLM.uproc.apb_slave_port 			6000 1000
+top_TLM.udma.apb_slave_port			7000 1000

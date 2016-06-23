@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>apbSubSystem</ipxact:name>
+   <ipxact:version>1.1</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Master</ipxact:name>
+         <ipxact:busType library="busdef.leon2" name="IntProc" vendor="spiritconsortium.org"
+                         version="v1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.leon2" name="IntProc_rtl" vendor="spiritconsortium.org"
+                                      version="v1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRL</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irl_master_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQVEC</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irq_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>INTack</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ack_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>AHB_Slave</ipxact:name>
+         <ipxact:busType library="AMBA2" name="AHB" vendor="amba.com" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="ahb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ahb_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MSlave_4</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb4_mslave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MSlave_5</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb5_mslave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MSlave_6</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb6_mslave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MSlave_7</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>apb7_mslave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>INT_Slave</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>int4_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>spirit-design</ipxact:name>
+            <ipxact:envIdentifier>::Hierarchy</ipxact:envIdentifier>
+            <ipxact:designInstantiationRef>spirit-design</ipxact:designInstantiationRef>
+         </ipxact:view>
+         <ipxact:view>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>TLM_PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:designInstantiation>
+            <ipxact:name>spirit-design</ipxact:name>
+            <ipxact:designRef library="Leon2TLM" name="design_apbSubSystem" vendor="spiritconsortium.org"
+                              version="1.1"/>
+         </ipxact:designInstantiation>
+         <ipxact:componentInstantiation>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:language>systemc</ipxact:language>
+            <ipxact:moduleName>apbSubSystem</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>sourceCode</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>int4_slave_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ahb_slave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irl_master_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irq_slave_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ack_slave_port</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>bool</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>clk_timers</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>sc_logic</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>TLM_PV</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>0</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>apb4_mslave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>apb5_mslave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>apb6_mslave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>apb7_mslave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>sourceCode</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/apbSubSystem.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>apbSubSystem</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+</ipxact:component>

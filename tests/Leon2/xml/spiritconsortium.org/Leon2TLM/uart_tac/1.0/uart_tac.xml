@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>uart_tac</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="SPG" name="tlm_tac" vendor="st.com" version="2.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>tac_if</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ambaAPB</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="ambaAPB"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:addressBlock>
+            <ipxact:name>ambaAPB</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:range>24</ipxact:range>
+            <ipxact:width>32</ipxact:width>
+            <ipxact:usage>register</ipxact:usage>
+            <ipxact:register>
+               <ipxact:name>data</ipxact:name>
+               <ipxact:description>Data read/write register</ipxact:description>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>data</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h0</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>status</ipxact:name>
+               <ipxact:description>Status register</ipxact:description>
+               <ipxact:addressOffset>'h4</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>status</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h6</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>control</ipxact:name>
+               <ipxact:description>Control register</ipxact:description>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>control</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h0</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>scalarReload</ipxact:name>
+               <ipxact:description>Scalar reload register</ipxact:description>
+               <ipxact:addressOffset>'hC</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>scalarReload</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h0</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+         </ipxact:addressBlock>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>PV</ipxact:name>
+            <ipxact:envIdentifier>systemCSource::</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>PV</ipxact:name>
+            <ipxact:language>systemCSource</ipxact:language>
+            <ipxact:moduleName>Leon2::uart</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter type="string" dataType="sc_module_name" usageType="nontyped">
+                  <ipxact:name>module_name</ipxact:name>
+                  <ipxact:value>moduleName_id</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="bit" dataType="bool" usageType="nontyped">
+                  <ipxact:name>resetOnInitialize</ipxact:name>
+                  <ipxact:value>resetOnInitialize_id</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter type="longint" dataType="unsigned int" usageType="nontyped">
+                  <ipxact:name>debug_level</ipxact:name>
+                  <ipxact:value>debug_level_id</ipxact:value>
+               </ipxact:moduleParameter>
+               <ipxact:moduleParameter dataType="tlm_endianness endianness" usageType="nontyped">
+                  <ipxact:name>endianness</ipxact:name>
+                  <ipxact:value>endianness_id</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-scSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>ambaAPB</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>prt_tlm_tac::tac_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>tac_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">TAC</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>BFM_ADDRESS_TYPE</ipxact:name>
+                                 <ipxact:value>tlm_uint32_t</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>BFM_DATA_TYPE</ipxact:name>
+                                 <ipxact:value>tlm_uint32_t</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>ambaAPB</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>endianness</ipxact:name>
+         <ipxact:enumeration text="TLM_BIG_ENDIAN">TLM_BIG_ENDIAN</ipxact:enumeration>
+         <ipxact:enumeration text="TLM_LITTLE_ENDIAN">TLM_LITTLE_ENDIAN</ipxact:enumeration>
+         <ipxact:enumeration text="TLM_HOST_ENDIAN">TLM_HOST_ENDIAN</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-scSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/Leon2_uart.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>./include</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/tlmreg_Leon2_uart.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>./include</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/user_specific_Leon2_uart.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>./include</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/include/Leon2_uart.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/include/def_Leon2_uart.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/include/tlmreg_Leon2_uart.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/include/tlm_field.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/include/tlm_register.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="moduleName_id" resolve="generated" type="string"
+                        configGroups="requiredConfig"
+                        prompt="module name">
+         <ipxact:name>module_name</ipxact:name>
+         <!--WARNING: Generated value.--><ipxact:value>""</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="resetOnInitialize_id" resolve="user" type="bit"
+                        configGroups="requiredConfig"
+                        prompt="whether reset() should be invoked at startup time">
+         <ipxact:name>resetOnInitialize</ipxact:name>
+         <ipxact:value>true</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="debug_level_id" resolve="user" type="longint"
+                        configGroups="requiredConfig"
+                        prompt="debug level">
+         <ipxact:name>debug_level</ipxact:name>
+         <ipxact:value>0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="endianness_id" resolve="user" choiceRef="endianness"
+                        configGroups="requiredConfig"
+                        prompt="use specific endianness">
+         <ipxact:name>endianness</ipxact:name>
+         <ipxact:value>TLM_BIG_ENDIAN</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

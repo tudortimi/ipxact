@@ -1,0 +1,6 @@
+top_TLM.i_sub.i_irq.apb_slave_port 	0000 1000
+top_TLM.i_sub.i_tim.apb_slave_port 	1000 1000
+top_TLM.i_cgu.apb_slave_port 			4000 1000
+top_TLM.i_rgu.apb_slave_port 			5000 1000
+top_TLM.i_proc.apb_slave_port 		6000 1000
+top_TLM.i_dma.apb_slave_port			7000 1000

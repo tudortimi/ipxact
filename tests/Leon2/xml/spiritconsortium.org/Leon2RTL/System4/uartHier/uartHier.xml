@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Christophe Amerijckx (STMicroelectronics) -->
+<!--
+// Description : uartHier.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.0
+//
+// Copyright (c) 2007 SPIRIT.  All rights reserved.
+// www.spiritconsortium.com
+//
+// THIS WORK FORMS PART OF A SPIRIT CONSORTIUM SPECIFICATION.  
+// THIS WORK CONTAINS TRADE SECRETS AND PROPRIETARY INFORMATION 
+// WHICH IS THE EXCLUSIVE PROPERTY OF INDIVIDUAL MEMBERS OF THE 
+// SPIRIT CONSORTIUM. USE OF THESE MATERIALS ARE GOVERNED BY 
+// THE LEGAL TERMS AND CONDITIONS OUTLINED IN THE THE SPIRIT 
+// SPECIFICATION DISCLAIMER AVAILABLE FROM
+// www.spiritconsortium.org
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>uartHier</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>APBClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.amba" name="APB_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Select</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Enable</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Address</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Write</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>WriteData</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>ReadData</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Clock</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>Resetn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rst</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>Interrupt</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.interrupt" name="interrupt"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.interrupt" name="interrupt_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>irq</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>serial</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.generic" name="serial"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.generic" name="serial_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxd</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>TxD</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>txd</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ctsn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RTSn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rtsn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>DTRn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rxen</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>RTLHierarchical</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:designInstantiationRef>RTLHierarchical</ipxact:designInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:designInstantiation>
+            <ipxact:name>RTLHierarchical</ipxact:name>
+            <ipxact:designRef vendor="spiritconsortium.org" library="Leon2RTL" name="uartHierDesignConfig"
+                              version="1.0"/>
+         </ipxact:designInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>clk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="clk">
+                        <ipxact:clockPeriod>ClockPeriod</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>ClockPulseOffset</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>ClockPulseValue</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>ClockPulseDuration</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rst</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>psel</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">50</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">90</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>irq</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">80</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>scaler</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>7</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>sigdefVal_scaler</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">75</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rxd</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>sigdefVal_rxd</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">75</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rxen</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">60</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>txd</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">60</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>txen</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">60</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>flow</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">60</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rtsn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">60</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ctsn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>sigdefVal_ctsn</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+               <ipxact:constraintSets>
+                  <ipxact:constraintSet constraintSetId="default">
+                     <ipxact:timingConstraint clockName="virtual_clk">75</ipxact:timingConstraint>
+                  </ipxact:constraintSet>
+               </ipxact:constraintSets>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>source-code</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>hdlsrc/uartHier.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>work</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:otherClockDrivers>
+      <ipxact:otherClockDriver clockName="virtual_clock">
+         <ipxact:clockPeriod>VirtualClockPeriod</ipxact:clockPeriod>
+         <ipxact:clockPulseOffset>VirtualClockPulseOffset</ipxact:clockPulseOffset>
+         <ipxact:clockPulseValue>VirtualClockPulseValue</ipxact:clockPulseValue>
+         <ipxact:clockPulseDuration>VirtualClockPulseDuration</ipxact:clockPulseDuration>
+      </ipxact:otherClockDriver>
+   </ipxact:otherClockDrivers>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="sigdefVal_scaler" type="longint">
+         <ipxact:name>sigdefVal_scaler</ipxact:name>
+         <ipxact:value>'h0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="sigdefVal_rxd" type="longint">
+         <ipxact:name>sigdefVal_rxd</ipxact:name>
+         <ipxact:value>0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="sigdefVal_ctsn" type="longint">
+         <ipxact:name>sigdefVal_ctsn</ipxact:name>
+         <ipxact:value>0</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseValue" resolve="user" type="longint"
+                        prompt="Clock Pulse Value:">
+         <ipxact:name>ClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPeriod" resolve="user" type="real"
+                        prompt="Clock Pulse Period:">
+         <ipxact:name>ClockPeriod</ipxact:name>
+         <ipxact:value>8</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseDuration" resolve="user" type="real"
+                        prompt="Clock Pulse Duration:">
+         <ipxact:name>ClockPulseDuration</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseOffset" resolve="user" type="real"
+                        prompt="Clock Pulse Offset:">
+         <ipxact:name>ClockPulseOffset</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="VirtualClockPeriod" resolve="user" type="real"
+                        prompt="Virtual Clock Period:">
+         <ipxact:name>VirtualClockPeriod</ipxact:name>
+         <ipxact:value>8</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="VirtualClockPulseDuration" resolve="user" type="real"
+                        prompt="Virtual Clock Pulse Duration:">
+         <ipxact:name>VirtualClockPulseDuration</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="VirtualClockPulseValue" resolve="user" type="longint"
+                        prompt="Virtual Clock Pulse Value:">
+         <ipxact:name>VirtualClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="VirtualClockPulseOffset" resolve="user" type="real"
+                        prompt="Virtual Clock Pulse Offset:">
+         <ipxact:name>VirtualClockPulseOffset</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

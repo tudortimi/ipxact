@@ -1,0 +1,46 @@
+W 00000080 DEADBEEF   -- test to ahbram
+I 128   
+W 00000084 BEEFDEAD
+R 00000080 DEADBEEF
+R 00000084 BEEFDEAD
+W 30006000 00000000
+W 30006000 00000FF0
+R 30006000 00000FF0
+W 10000000 ABCD0123   -- local processor memory
+W 10000004 00000000   -- local processor memory
+R 10000000 ABCD0123   -- local processor memory
+--R 90000000 00000000   -- read to invalid address, generates an ERROR
+--R 00000000 00000000   -- check a read of unknowns, generates an ERROR
+R 30004FFC 00000D00   -- check the CGU ID register
+R 30005FFC 00000D01   -- check the RGU ID register
+R 30002FFC 00000D08   -- check the APBRAM ID register
+W 30002000 0F00FF00   -- write the APBRAM 
+W 30002004 00FF00FF   -- write the APBRAM 
+R 30002000 0F00FF00   -- check the APBRAM 
+R 30002004 00FF00FF   -- check the APBRAM 
+W 30004000 00000002   -- Set clock to divide by 4
+W 30000000 0000FFFE   -- unmask all the interrupts
+W 30001004 0000001F   -- load the timer
+W 30001008 00000005   -- enable the timer
+R 30001008 00000005 00000003   -- Read timer with mask
+I 1044                -- wait for interrupt
+W 00000000 00000001   -- setup data for DMA
+W 00000004 00000010
+W 00000008 00000100
+W 0000000C 00001000
+W 00000010 00010000
+W 00000014 00100000
+W 00000018 01000000
+W 0000001C 10000000
+W 30007000 00000000   -- DMA source address
+W 30007004 00001000   -- DMA destination address
+W 30007008 00001A08   -- DMA control - enable, inc=word (1010), length=8 
+I 2024
+R 00001000 00000001   -- read data that was DMA moved
+R 00001004 00000010
+R 00001008 00000100
+R 0000100C 00001000
+R 00001010 00010000
+R 00001014 00100000
+R 00001018 01000000
+R 0000101C 10000000

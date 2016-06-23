@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>i2c</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>IPClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ip_clk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>IPReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>rst_an</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="APB_rtl" version="r2p0_4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PENABLE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PCLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="ambaAPB"/>
+         </ipxact:slave>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>i2c_internal</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.nxp" name="i2c_internal"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.nxp" name="i2c_internal_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SCL_IN</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sclIn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SCL_OEN</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sclOut</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SDA_IN</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sdaIn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>SDA_OEN</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>sdaOut</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>interrupt</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.interrupt" name="interrupt"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.interrupt" name="interrupt_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>intr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:addressBlock>
+            <ipxact:name>registers</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:range>4 * (2 ** 10)</ipxact:range>
+            <ipxact:width>32</ipxact:width>
+            <ipxact:register>
+               <ipxact:name>rxfifo</ipxact:name>
+               <ipxact:description>Recieve FIFO</ipxact:description>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved for future use</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Data_byte</ipxact:name>
+                  <ipxact:description>Bit 7 is the MSB</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>txfifo</ipxact:name>
+               <ipxact:description>Transmit FIFO</ipxact:description>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>write-only</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved for future use</ipxact:description>
+                  <ipxact:bitOffset>10</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,10) % $pow(2,22)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>22</ipxact:bitWidth>
+                  <ipxact:access>write-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>STOP_bit</ipxact:name>
+                  <ipxact:description>Issue a STOP condition after transmitting this data byte</ipxact:description>
+                  <ipxact:bitOffset>9</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,9) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>write-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>START_bit</ipxact:name>
+                  <ipxact:description>Issue a START condition before transmitting this data byte</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,8) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>write-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>Data_byte</ipxact:name>
+                  <ipxact:description>Bit 7 is the MSB</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000000) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>write-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>status</ipxact:name>
+               <ipxact:description>Status register</ipxact:description>
+               <ipxact:addressOffset>'h4</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>transmitDone</ipxact:name>
+                  <ipxact:description>Indicates that the current transmission is complete. Write a 1 to clear this bit.</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,0) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:modifiedWriteValue>oneToClear</ipxact:modifiedWriteValue>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>arbitrationFailure</ipxact:name>
+                  <ipxact:description>Indicates an arbitration failure. Wite a 1 to clear this bit.</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,1) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-write</ipxact:access>
+                  <ipxact:modifiedWriteValue>oneToClear</ipxact:modifiedWriteValue>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>noAcknowledge</ipxact:name>
+                  <ipxact:description>Indicates that no acknowledge was recieved on the current transmission. This bit is reset when a new transmission starts.</ipxact:description>
+                  <ipxact:bitOffset>2</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,2) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>active</ipxact:name>
+                  <ipxact:description>Indicates that I2C bus is active</ipxact:description>
+                  <ipxact:bitOffset>3</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,3) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>scl</ipxact:name>
+                  <ipxact:description>Indicates the current state of the scl line</ipxact:description>
+                  <ipxact:bitOffset>4</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,4) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>sda</ipxact:name>
+                  <ipxact:description>Indicates the current state of the sda line</ipxact:description>
+                  <ipxact:bitOffset>5</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,5) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>receiveFifoFull</ipxact:name>
+                  <ipxact:description>Indicates that the receive FIFO is full</ipxact:description>
+                  <ipxact:bitOffset>6</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,6) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>receiveFifoEmpty</ipxact:name>
+                  <ipxact:description>Indicates that the receive FIFO is empty</ipxact:description>
+                  <ipxact:bitOffset>7</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,7) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>trasmitFifoFull</ipxact:name>
+                  <ipxact:description>Indicates that the trasmit FIFO is full</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,8) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>trasmitFifoEmpty</ipxact:name>
+                  <ipxact:description>Indicates that the trasmit FIFO is empty</ipxact:description>
+                  <ipxact:bitOffset>9</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,9) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:volatile>true</ipxact:volatile>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>10</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h180) / $pow(2,10) % $pow(2,22)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>22</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>control</ipxact:name>
+               <ipxact:description>Control register</ipxact:description>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>transactionDoneIntEnable</ipxact:name>
+                  <ipxact:description>Transaction done interrupt enable</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>arbFailIntEnable</ipxact:name>
+                  <ipxact:description>Abatration failure interrupt enable</ipxact:description>
+                  <ipxact:bitOffset>1</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,1) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>noAckIntEnable</ipxact:name>
+                  <ipxact:description>No ackowledge interrupt enable</ipxact:description>
+                  <ipxact:bitOffset>2</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,2) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>softReset</ipxact:name>
+                  <ipxact:description>Soft reset of the IP</ipxact:description>
+                  <ipxact:bitOffset>3</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,3) % $pow(2,1)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>1</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>5</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,5) % $pow(2,27)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>27</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clkDivHi</ipxact:name>
+               <ipxact:description>Clock high time divide register</ipxact:description>
+               <ipxact:addressOffset>'hc</ipxact:addressOffset>
+               <ipxact:size>6</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>clkDivHi</ipxact:name>
+                  <ipxact:description>Clock high time divide field</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h30) / $pow(2,0) % $pow(2,6)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>6</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>7</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h30) / $pow(2,7) % $pow(2,25)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>25</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clkDivLo</ipxact:name>
+               <ipxact:description>Clock low time divide register</ipxact:description>
+               <ipxact:addressOffset>'h10</ipxact:addressOffset>
+               <ipxact:size>6</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>clkDivLo</ipxact:name>
+                  <ipxact:description>Clock low time divide field</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h30) / $pow(2,0) % $pow(2,6)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>6</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>7</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h30) / $pow(2,7) % $pow(2,25)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>25</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>Module_ID</ipxact:name>
+               <ipxact:description>Contains the ID number of the IP</ipxact:description>
+               <ipxact:addressOffset>'hFFC</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>ID</ipxact:name>
+                  <ipxact:description>Unique identification number</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000D02) / $pow(2,0) % $pow(2,16)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>16</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>16</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000D02) / $pow(2,16) % $pow(2,16)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>16</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+         </ipxact:addressBlock>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>verilogsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>verilogsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+         <ipxact:view>
+            <ipxact:name>vhdlwrapper</ipxact:name>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlwrapper</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>verilogsource</ipxact:name>
+            <ipxact:language>verilog</ipxact:language>
+            <ipxact:moduleName>i2c</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-verilogSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlwrapper</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>i2c</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-verilogSource</ipxact:localName>
+            </ipxact:fileSetRef>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlWrapper</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>pclk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="clk">
+                        <ipxact:clockPeriod>ClockPeriod</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>ClockPulseOffset</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>ClockPulseValue</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>ClockPulseDuration</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>presetn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>psel</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>11</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sclIn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>1</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sclOut</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sdaIn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:defaultValue>1</ipxact:defaultValue>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>sdaOut</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>ip_clk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="ipclk">
+                        <ipxact:clockPeriod>ipClockPeriod</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>ipClockPulseOffset</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>ipClockPulseValue</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>ipClockPulseDuration</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>rst_an</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>intr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-verilogSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_apb_read_mux.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_apb_write_decode.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_clkcnt.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_control.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_intr.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_master.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_risefall.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_rx.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_rxfifo.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_shift.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_status.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_transitions.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_tx.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c_txfifo.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c.v</ipxact:name>
+            <ipxact:fileType>verilogSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:dependency>data/i2c/RTL</ipxact:dependency>
+      </ipxact:fileSet>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlWrapper</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>data/i2c/RTL/i2c.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>i2c_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:description>I2C master controller - with enhanced register descriptions</ipxact:description>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="ClockPulseValue" resolve="user" type="longint"
+                        prompt="Clock Pulse Value:">
+         <ipxact:name>ClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ipClockPulseValue" resolve="user" type="longint"
+                        prompt="IP Clock Pulse Value:">
+         <ipxact:name>ipClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPeriod" resolve="user" type="real"
+                        prompt="Clock Pulse Period:">
+         <ipxact:name>ClockPeriod</ipxact:name>
+         <ipxact:value>8</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ipClockPeriod" resolve="user" type="real"
+                        prompt="IP Clock Pulse Period:">
+         <ipxact:name>ipClockPeriod</ipxact:name>
+         <ipxact:value>1000</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseDuration" resolve="user" type="real"
+                        prompt="Clock Pulse Duration:">
+         <ipxact:name>ClockPulseDuration</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ipClockPulseDuration" resolve="user" type="real"
+                        prompt="IP Clock Pulse Duration:">
+         <ipxact:name>ipClockPulseDuration</ipxact:name>
+         <ipxact:value>500</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseOffset" resolve="user" type="real"
+                        prompt="Clock Pulse Offset:">
+         <ipxact:name>ClockPulseOffset</ipxact:name>
+         <ipxact:value>4</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ipClockPulseOffset" resolve="user" type="real"
+                        prompt="IP Clock Pulse Offset:">
+         <ipxact:name>ipClockPulseOffset</ipxact:name>
+         <ipxact:value>500</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

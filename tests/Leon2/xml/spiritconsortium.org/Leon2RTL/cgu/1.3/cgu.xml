@@ -1,0 +1,1111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : cgu.xml
+// Author : SPIRIT Schema Working Group - Christophe Amerijckx
+// Version: 1.2
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>cgu</ipxact:name>
+   <ipxact:version>1.3</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>MainClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkin</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBClk</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APBReset</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.reset" name="reset" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.reset" name="reset_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType vendor="amba.com" library="AMBA2" name="APB" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="amba.com" library="AMBA2" name="APB_rtl" version="r2p0_4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PSELx</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>psel</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PENABLE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>penable</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWRITE</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwrite</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PWDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pwdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PCLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pclk</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRESETn</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>presetn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="ambaAPB"/>
+         </ipxact:slave>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock0_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock0_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock0_2</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock0_3</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>0</ipxact:left>
+                              <ipxact:right>0</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock1_apb0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>1</ipxact:left>
+                              <ipxact:right>1</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock1_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>1</ipxact:left>
+                              <ipxact:right>1</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock2_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>2</ipxact:left>
+                              <ipxact:right>2</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock2_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>2</ipxact:left>
+                              <ipxact:right>2</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock3_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>3</ipxact:left>
+                              <ipxact:right>3</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock3_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>3</ipxact:left>
+                              <ipxact:right>3</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock4_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>4</ipxact:left>
+                              <ipxact:right>4</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock4_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>4</ipxact:left>
+                              <ipxact:right>4</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock5_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>5</ipxact:left>
+                              <ipxact:right>5</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock5_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>5</ipxact:left>
+                              <ipxact:right>5</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock6_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>6</ipxact:left>
+                              <ipxact:right>6</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock6_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>6</ipxact:left>
+                              <ipxact:right>6</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock7_0</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>7</ipxact:left>
+                              <ipxact:right>7</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>clock7_1</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.clock" name="clock" version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.clock" name="clock_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>CLK</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>clkout</ipxact:name>
+                        <ipxact:partSelect>
+                           <ipxact:range>
+                              <ipxact:left>7</ipxact:left>
+                              <ipxact:right>7</ipxact:right>
+                           </ipxact:range>
+                        </ipxact:partSelect>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:addressBlock>
+            <ipxact:name>defaultid4490597</ipxact:name>
+            <ipxact:baseAddress>0</ipxact:baseAddress>
+            <ipxact:range>4 * (2 ** 10)</ipxact:range>
+            <ipxact:width>width</ipxact:width>
+            <ipxact:usage>register</ipxact:usage>
+            <ipxact:parameters>
+               <ipxact:parameter parameterId="width" type="longint">
+                  <ipxact:name>width</ipxact:name>
+                  <ipxact:value>32</ipxact:value>
+               </ipxact:parameter>
+            </ipxact:parameters>
+            <ipxact:register>
+               <ipxact:name>clock0Divide</ipxact:name>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock1Divide</ipxact:name>
+               <ipxact:addressOffset>'h4</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock2Divide</ipxact:name>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock3Divide</ipxact:name>
+               <ipxact:addressOffset>'hC</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock4Divide</ipxact:name>
+               <ipxact:addressOffset>'h10</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock5Divide</ipxact:name>
+               <ipxact:addressOffset>'h14</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock6Divide</ipxact:name>
+               <ipxact:addressOffset>'h18</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>clock7Divide</ipxact:name>
+               <ipxact:addressOffset>'h1C</ipxact:addressOffset>
+               <ipxact:typeIdentifier>clkDiv</ipxact:typeIdentifier>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:volatile>false</ipxact:volatile>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>Reserved</ipxact:name>
+                  <ipxact:description>Reserved</ipxact:description>
+                  <ipxact:bitOffset>8</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,8) % $pow(2,24)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>24</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+               <ipxact:field>
+                  <ipxact:name>divide</ipxact:name>
+                  <ipxact:description>Divide value for clock, 0=no divide, 1=divide by 2, 2=divide by 4, 3=divide by 6, ...</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h0) / $pow(2,0) % $pow(2,8)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>8</ipxact:bitWidth>
+                  <ipxact:access>read-write</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>IDReg</ipxact:name>
+               <ipxact:description>ID register</ipxact:description>
+               <ipxact:addressOffset>'hFFC</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <ipxact:field>
+                  <ipxact:name>ID</ipxact:name>
+                  <ipxact:description>ID Field</ipxact:description>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>('h00000D00) / $pow(2,0) % $pow(2,32)</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+                  <ipxact:access>read-only</ipxact:access>
+               </ipxact:field>
+            </ipxact:register>
+         </ipxact:addressBlock>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:envIdentifier>:modelsim.mentor.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:ncsim.cadence.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:vcs.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:envIdentifier>:designcompiler.synopsys.com:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>vhdlsource</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>vhdlsource</ipxact:name>
+            <ipxact:language>vhdl</ipxact:language>
+            <ipxact:moduleName>cgu(rtl)</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>fs-vhdlSource</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>pclk</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>presetn</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>psel</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>penable</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>11</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwrite</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>prdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>clkin</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:drivers>
+                  <ipxact:driver>
+                     <ipxact:clockDriver clockName="clk">
+                        <ipxact:clockPeriod>ClockPeriod</ipxact:clockPeriod>
+                        <ipxact:clockPulseOffset>ClockPulseOffset</ipxact:clockPulseOffset>
+                        <ipxact:clockPulseValue>ClockPulseValue</ipxact:clockPulseValue>
+                        <ipxact:clockPulseDuration>ClockPulseDuration</ipxact:clockPulseDuration>
+                     </ipxact:clockDriver>
+                  </ipxact:driver>
+               </ipxact:drivers>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>clkout</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>7</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>fs-vhdlSource</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>../1.2/hdlsrc/cgu.vhd</ipxact:name>
+            <ipxact:fileType>vhdlSource</ipxact:fileType>
+            <ipxact:logicalName>cgu_lib</ipxact:logicalName>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:description>Clock generation unit with enhanced register descrption</ipxact:description>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="ClockPulseValue" resolve="user" type="longint"
+                        prompt="Clock Pulse Value:">
+         <ipxact:name>ClockPulseValue</ipxact:name>
+         <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPeriod" resolve="user" type="real"
+                        prompt="Clock Pulse Period:">
+         <ipxact:name>ClockPeriod</ipxact:name>
+         <ipxact:value>100</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseDuration" resolve="user" type="real"
+                        prompt="Clock Pulse Duration:">
+         <ipxact:name>ClockPulseDuration</ipxact:name>
+         <ipxact:value>50</ipxact:value>
+      </ipxact:parameter>
+      <ipxact:parameter parameterId="ClockPulseOffset" resolve="user" type="real"
+                        prompt="Clock Pulse Offset:">
+         <ipxact:name>ClockPulseOffset</ipxact:name>
+         <ipxact:value>50</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

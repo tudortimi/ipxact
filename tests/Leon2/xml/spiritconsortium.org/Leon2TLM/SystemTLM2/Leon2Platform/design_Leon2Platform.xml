@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>design_Leon2Platform</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_ahb</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="ahbbus22" vendor="spiritconsortium.org" version="1.4">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="range_slv0_mirror">'h00040000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range_slv1_mirror">'h00009000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv0_mirror">'h0</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="start_addr_slv1_mirror">'h30000000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="mapfile">leon2AhbBus.map</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_mem</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="ahbram" vendor="spiritconsortium.org" version="1.4">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="addressBusSize">16</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_sub</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="apbSubSystem" vendor="spiritconsortium.org"
+                              version="1.2"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_cgu</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="cgu" vendor="spiritconsortium.org" version="1.4">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="ClockPeriod">100</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseDuration">50</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseOffset">50</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseValue">1</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_dma</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="dma" vendor="spiritconsortium.org" version="1.4"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_proc</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="processor" vendor="spiritconsortium.org" version="1.4"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_rgu</ipxact:instanceName>
+         <ipxact:componentRef library="Leon2TLM" name="rgu" vendor="spiritconsortium.org" version="1.4">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="ClockPeriod">100</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseDuration">50</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseOffset">50</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseValue">1</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:interconnections>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489931</ipxact:name>
+         <ipxact:activeInterface busRef="AHB_Master" componentRef="i_proc"/>
+         <ipxact:activeInterface busRef="AHB_MirroredMaster0" componentRef="i_ahb"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489948</ipxact:name>
+         <ipxact:activeInterface busRef="AHB_Master" componentRef="i_dma"/>
+         <ipxact:activeInterface busRef="AHB_MirroredMaster1" componentRef="i_ahb"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489949</ipxact:name>
+         <ipxact:activeInterface busRef="INT_Master" componentRef="i_dma"/>
+         <ipxact:activeInterface busRef="INT_Slave" componentRef="i_sub"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489964</ipxact:name>
+         <ipxact:activeInterface busRef="AHB_Slave" componentRef="i_mem"/>
+         <ipxact:activeInterface busRef="AHB_MirroredSlave0" componentRef="i_ahb"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489981</ipxact:name>
+         <ipxact:activeInterface busRef="AHB_Slave" componentRef="i_sub"/>
+         <ipxact:activeInterface busRef="AHB_MirroredSlave1" componentRef="i_ahb"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489998</ipxact:name>
+         <ipxact:activeInterface busRef="INT_Slave" componentRef="i_proc"/>
+         <ipxact:activeInterface busRef="INT_Master" componentRef="i_sub"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4490014</ipxact:name>
+         <ipxact:activeInterface busRef="APB_Slave" componentRef="i_cgu"/>
+         <ipxact:activeInterface busRef="APB_MSlave_4" componentRef="i_sub"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4490031</ipxact:name>
+         <ipxact:activeInterface busRef="APB_Slave" componentRef="i_rgu"/>
+         <ipxact:activeInterface busRef="APB_MSlave_5" componentRef="i_sub"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4490048</ipxact:name>
+         <ipxact:activeInterface busRef="APB_Slave" componentRef="i_proc"/>
+         <ipxact:activeInterface busRef="APB_MSlave_6" componentRef="i_sub"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4490065</ipxact:name>
+         <ipxact:activeInterface busRef="APB_Slave" componentRef="i_dma"/>
+         <ipxact:activeInterface busRef="APB_MSlave_7" componentRef="i_sub"/>
+      </ipxact:interconnection>
+   </ipxact:interconnections>
+   <ipxact:adHocConnections>
+      <ipxact:adHocConnection>
+         <ipxact:name>rstin_an</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_rgu" portRef="rstin_an"/>
+            <ipxact:externalPortReference portRef="rstin_an"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>clkdiv0</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_sub" portRef="clk_timers"/>
+            <ipxact:internalPortReference componentRef="i_proc" portRef="clk"/>
+            <ipxact:internalPortReference componentRef="i_cgu" portRef="clkout">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>0</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:internalPortReference componentRef="i_rgu" portRef="ipclk"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>rstdiv0</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_rgu" portRef="rstout_an">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>0</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:internalPortReference componentRef="i_sub" portRef="reset_port"/>
+            <ipxact:internalPortReference componentRef="i_proc" portRef="rst_an"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+   </ipxact:adHocConnections>
+</ipxact:design>

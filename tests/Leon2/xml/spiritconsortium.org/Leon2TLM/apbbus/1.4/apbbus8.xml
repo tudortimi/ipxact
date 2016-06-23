@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>apbbus8</ipxact:name>
+   <ipxact:version>1.4</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredMaster</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>target_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredMaster/>
+         <ipxact:connectionRequired>true</ipxact:connectionRequired>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave0</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port0</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv0</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv0</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv0" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv0</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv0" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 0 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv0</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave1</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port1</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv1</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv1</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv1" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 1 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv1</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv1" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 1 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv1</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave2</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port2</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv2</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv2</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv2" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 2 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv2</ipxact:name>
+               <ipxact:value>8192</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv2" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 2 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv2</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave3</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port3</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv3</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv3</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv3" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 3 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv3</ipxact:name>
+               <ipxact:value>12288</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv3" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 3 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv3</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave4</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port4</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv4</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv4</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv4" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 4 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv4</ipxact:name>
+               <ipxact:value>16384</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv4" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 4 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv4</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave5</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port5</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv5</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv5</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv5" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 5 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv5</ipxact:name>
+               <ipxact:value>20480</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv5" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 5 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv5</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave6</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port6</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv6</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv6</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv6" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 6 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv6</ipxact:name>
+               <ipxact:value>24576</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv6" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 6 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv6</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>APB_MirroredSlave7</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="apb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>initiator_port7</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:mirroredSlave>
+            <ipxact:baseAddresses>
+               <ipxact:remapAddress minimum="0" maximum="262144">remapAddressSlv7</ipxact:remapAddress>
+               <ipxact:range minimum="0" maximum="262144">rangeSlv7</ipxact:range>
+            </ipxact:baseAddresses>
+         </ipxact:mirroredSlave>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="remapAddressSlv7" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 7 Starting Address (18 bits):"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>remapAddressSlv7</ipxact:name>
+               <ipxact:value>28672</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="rangeSlv7" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="Slave 7 Range:"
+                              minimum="0"
+                              maximum="262144">
+               <ipxact:name>rangeSlv7</ipxact:name>
+               <ipxact:value>4096</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:channels>
+      <ipxact:channel>
+         <ipxact:name>APBChannel</ipxact:name>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredMaster</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave0</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave1</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave2</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave3</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave4</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave5</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave6</ipxact:localName>
+         </ipxact:busInterfaceRef>
+         <ipxact:busInterfaceRef>
+            <ipxact:localName>APB_MirroredSlave7</ipxact:localName>
+         </ipxact:busInterfaceRef>
+      </ipxact:channel>
+   </ipxact:channels>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>TLM_PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:language>systemc</ipxact:language>
+            <ipxact:moduleName>apbbus</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter dataType="const char*" usageType="nontyped">
+                  <ipxact:name>mapfile</ipxact:name>
+                  <ipxact:value>mapfile</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>sourceCode</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>target_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port0</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port1</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port2</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port3</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port4</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port5</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port6</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>initiator_port7</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_initiator_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_initiator_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>initiator_port</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>sourceCode</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/apbbus.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>apbbus</ipxact:logicalName>
+            <ipxact:dependency>../../PV</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_router.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/user_types.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="mapfile" resolve="user">
+         <ipxact:name>mapfile</ipxact:name>
+         <ipxact:value>apbmstMapFile.map</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

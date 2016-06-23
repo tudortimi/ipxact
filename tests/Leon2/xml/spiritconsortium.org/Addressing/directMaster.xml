@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description : directMaster.xml
+// Author : SPIRIT Schema Working Group 
+// Version: 1.0
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2006, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Addressing</ipxact:library>
+   <ipxact:name>directMaster</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>directMaster</ipxact:name>
+         <ipxact:busType vendor="spiritconsortium.org" library="busdef.direct" name="direct"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef vendor="spiritconsortium.org" library="busdef.direct" name="direct_rtl"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PRDATA</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>prdata</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PADDR</ipxact:name>
+                        <ipxact:range>
+                           <ipxact:left>addr + 32 - 1</ipxact:left>
+                           <ipxact:right>addr</ipxact:right>
+                        </ipxact:range>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>paddr</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master>
+            <ipxact:addressSpaceRef addressSpaceRef="main">
+               <ipxact:baseAddress>asBase</ipxact:baseAddress>
+            </ipxact:addressSpaceRef>
+         </ipxact:master>
+         <ipxact:bitsInLau>8</ipxact:bitsInLau>
+         <ipxact:bitSteering>mSteer</ipxact:bitSteering>
+         <ipxact:endianness>little</ipxact:endianness>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="addr" resolve="user" type="longint"
+                              prompt="Least mapped LSB of the address">
+               <ipxact:name>addr</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="asBase" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="addressSpace Base address:">
+               <ipxact:name>asBase</ipxact:name>
+               <ipxact:value>0</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="mSteer" resolve="user" type="string" choiceRef="bitSteer"
+                              configGroups="requiredConfig"
+                              prompt="bitSteering:">
+               <ipxact:name>mSteer</ipxact:name>
+               <ipxact:value>off</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:addressSpaces>
+      <ipxact:addressSpace>
+         <ipxact:name>main</ipxact:name>
+         <ipxact:range>asRange</ipxact:range>
+         <ipxact:width>asWidth</ipxact:width>
+         <ipxact:addressUnitBits>8</ipxact:addressUnitBits>
+         <ipxact:parameters>
+            <ipxact:parameter parameterId="asRange" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="addressSpace range:">
+               <ipxact:name>asRange</ipxact:name>
+               <ipxact:value>4 * (2 ** 30)</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="asWidth" resolve="user" type="longint"
+                              configGroups="requiredConfig"
+                              prompt="addressSpace width:">
+               <ipxact:name>asWidth</ipxact:name>
+               <ipxact:value>32</ipxact:value>
+            </ipxact:parameter>
+         </ipxact:parameters>
+      </ipxact:addressSpace>
+   </ipxact:addressSpaces>
+   <ipxact:model>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>prdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>dataWidth - 1</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>paddr</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>31</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pwdata</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:vectors>
+                  <ipxact:vector>
+                     <ipxact:left>dataWidth - 1</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:vector>
+               </ipxact:vectors>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>bitSteer</ipxact:name>
+         <ipxact:enumeration text="on">on</ipxact:enumeration>
+         <ipxact:enumeration text="off">off</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:cpus>
+      <ipxact:cpu>
+         <ipxact:name>processor</ipxact:name>
+         <ipxact:addressSpaceRef addressSpaceRef="main"/>
+      </ipxact:cpu>
+   </ipxact:cpus>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="dataWidth" resolve="user" configGroups="requiredConfig"
+                        prompt="Data width:">
+         <ipxact:name>width</ipxact:name>
+         <ipxact:value>32</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

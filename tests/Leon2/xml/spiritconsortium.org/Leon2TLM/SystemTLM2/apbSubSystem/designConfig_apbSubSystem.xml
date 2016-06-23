@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: designConfig_apbSubSystem.xml
+// Author:      The SPIRIT Consortium
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+//
+// Copyright (c) 2008, 2009 The SPIRIT Consortium.
+//
+// This work forms part of a deliverable of The SPIRIT Consortium.
+//
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+//
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+//
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at
+// http://www.spiritconsortium.org/about/contact_us/
+//
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:designConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                            xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>designConfig_apbSubSystem</ipxact:name>
+   <ipxact:version>1.2</ipxact:version>
+   <ipxact:designRef library="Leon2TLM" name="design_apbSubSystem" vendor="spiritconsortium.org"
+                     version="1.2"/>
+   <ipxact:interconnectionConfiguration>
+      <ipxact:interconnectionRef>defaultid4490193</ipxact:interconnectionRef>
+      <ipxact:abstractorInstances>
+         <ipxact:abstractorInstance>
+            <ipxact:instanceName>i_adp</ipxact:instanceName>
+            <ipxact:abstractorRef library="Leon2TLM" name="scmlAdaptor" vendor="spiritconsortium.org"
+                                  version="1.0"/>
+            <ipxact:viewName>PVPVT</ipxact:viewName>
+         </ipxact:abstractorInstance>
+      </ipxact:abstractorInstances>
+   </ipxact:interconnectionConfiguration>
+   <ipxact:interconnectionConfiguration>
+      <ipxact:interconnectionRef>defaultid4490210</ipxact:interconnectionRef>
+      <ipxact:abstractorInstances>
+         <ipxact:abstractorInstance>
+            <ipxact:instanceName>i_pv2tac</ipxact:instanceName>
+            <ipxact:abstractorRef library="Leon2TLM" name="pv2tac" vendor="spiritconsortium.org" version="1.0"/>
+            <ipxact:viewName>PV2TAC</ipxact:viewName>
+         </ipxact:abstractorInstance>
+      </ipxact:abstractorInstances>
+   </ipxact:interconnectionConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_apb</ipxact:instanceName>
+      <ipxact:view viewRef="TLM_PV"/>
+   </ipxact:viewConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_h2p</ipxact:instanceName>
+      <ipxact:view viewRef="TLM_PV"/>
+   </ipxact:viewConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_irq</ipxact:instanceName>
+      <ipxact:view viewRef="TLM_PV"/>
+   </ipxact:viewConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_tim</ipxact:instanceName>
+      <ipxact:view viewRef="TLM_PV"/>
+   </ipxact:viewConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_uart_scml</ipxact:instanceName>
+      <ipxact:view viewRef="PVPVT"/>
+   </ipxact:viewConfiguration>
+   <ipxact:viewConfiguration>
+      <ipxact:instanceName>i_uart_tac</ipxact:instanceName>
+      <ipxact:view viewRef="PV"/>
+   </ipxact:viewConfiguration>
+</ipxact:designConfiguration>

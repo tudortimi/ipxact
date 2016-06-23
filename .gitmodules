@@ -1,0 +1,3 @@
+[submodule "dependencies/pyxb"]
+	path = dependencies/pyxb
+	url = https://github.com/pabigot/pyxb.git

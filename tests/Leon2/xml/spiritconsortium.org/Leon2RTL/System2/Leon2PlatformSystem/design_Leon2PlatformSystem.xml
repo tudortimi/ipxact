@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: design_Leon2PlatformSystem.xml
+// Author:      The SPIRIT Consortium
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+//
+// Copyright (c) 2009 The SPIRIT Consortium.
+//
+// This work forms part of a deliverable of The SPIRIT Consortium.
+//
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+//
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+//
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at
+// http://www.spiritconsortium.org/about/contact_us/
+//
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>design_Leon2PlatformSystem</ipxact:name>
+   <ipxact:version>2.0</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_Leon2Platform</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="Leon2Platform"
+                              version="2.0"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_dac</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="dac" version="1.2">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="dacwidth">24</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_i2c_channel_1m_2s</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="i2c_channel_1m_2s"
+                              version="1.0"/>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_i2c_gpio</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="i2c_gpio" version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="gpi">4</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="gpo">4</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_i2c_memory</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="i2c_memory"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="bytes">2</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="range">4096</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:interconnections>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489793</ipxact:name>
+         <ipxact:activeInterface componentRef="i_Leon2Platform" busRef="i2c"/>
+         <ipxact:activeInterface componentRef="i_i2c_channel_1m_2s" busRef="i2c_master1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489810</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c_gpio" busRef="i2c_slave"/>
+         <ipxact:activeInterface componentRef="i_i2c_channel_1m_2s" busRef="i2c_slave1"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489826</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c_memory" busRef="i2c_slave"/>
+         <ipxact:activeInterface componentRef="i_i2c_channel_1m_2s" busRef="i2c_slave2"/>
+      </ipxact:interconnection>
+   </ipxact:interconnections>
+   <ipxact:adHocConnections>
+      <ipxact:adHocConnection>
+         <ipxact:name>clkin</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_Leon2Platform" portRef="clkin"/>
+            <ipxact:externalPortReference portRef="clkin"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>dac_clk</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_dac" portRef="clk"/>
+            <ipxact:externalPortReference portRef="dac_clk"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>rstin_an</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_Leon2Platform" portRef="rstin_an"/>
+            <ipxact:externalPortReference portRef="rstin_an"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>gpi</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c_gpio" portRef="gpi">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>3</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:externalPortReference portRef="gpi"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>i2c_gpio_address</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c_gpio" portRef="address">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>9</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:externalPortReference portRef="i2c_gpio_address"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>i2c_memory_address</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c_memory" portRef="address">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>9</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:externalPortReference portRef="i2c_memory_address"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>SimDone</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_Leon2Platform" portRef="SimDone"/>
+            <ipxact:externalPortReference portRef="SimDone"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>id4489985</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_dac" portRef="data">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>23</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:internalPortReference componentRef="i_Leon2Platform" portRef="mp3Decode_dac_data">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>23</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>gpo</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c_gpio" portRef="gpo">
+               <ipxact:partSelect>
+                  <ipxact:range>
+                     <ipxact:left>3</ipxact:left>
+                     <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+               </ipxact:partSelect>
+            </ipxact:internalPortReference>
+            <ipxact:externalPortReference portRef="gpo"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+   </ipxact:adHocConnections>
+</ipxact:design>

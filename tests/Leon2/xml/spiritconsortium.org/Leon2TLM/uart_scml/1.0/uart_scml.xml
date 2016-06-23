@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>uart_scml</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>ambaAPB</ipxact:name>
+         <ipxact:busType library="AMBA2" name="APB" vendor="amba.com" version="r2p0_4"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="SCML" name="APB_PV" vendor="coware.com" version="1.1"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pPVTargetPort</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="uartScmlMemoryMap"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>Interrupt</ipxact:name>
+         <ipxact:busType library="busdef.interrupt" name="interrupt" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="busdef.interrupt" name="interrupt_rtl" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>IRQ</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pInterrupt</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>SerialOut</ipxact:name>
+         <ipxact:busType library="busdef.generic" name="serial" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="serial_pv" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RW_TRANSACTION</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pSerialOut</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:master/>
+      </ipxact:busInterface>
+      <ipxact:busInterface>
+         <ipxact:name>SerialIn</ipxact:name>
+         <ipxact:busType library="busdef.generic" name="serial" vendor="spiritconsortium.org"
+                         version="1.0"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="serial_pv" vendor="spiritconsortium.org"
+                                      version="1.0"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>RW_TRANSACTION</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>pSerialIn</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave/>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>uartScmlMemoryMap</ipxact:name>
+         <ipxact:addressBlock>
+            <ipxact:name>UART_REG</ipxact:name>
+            <ipxact:description>Receiver Buffer Register</ipxact:description>
+            <ipxact:baseAddress>uartScmlBaseAddress</ipxact:baseAddress>
+            <ipxact:range>24</ipxact:range>
+            <ipxact:width>32</ipxact:width>
+            <ipxact:usage>register</ipxact:usage>
+            <ipxact:parameters>
+               <ipxact:parameter parameterId="uartScmlBaseAddress" resolve="user" type="longint">
+                  <ipxact:name>uartScmlBaseAddress</ipxact:name>
+                  <ipxact:value>'hB0000000</ipxact:value>
+               </ipxact:parameter>
+            </ipxact:parameters>
+            <ipxact:register>
+               <ipxact:name>UART_REG_RBR</ipxact:name>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_RBR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h00</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_THR</ipxact:name>
+               <ipxact:description>Transmitter Holding Register</ipxact:description>
+               <ipxact:addressOffset>'h0</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>write-only</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_THR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h00</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_IER</ipxact:name>
+               <ipxact:description>Interrupt Enable (Mask) Register</ipxact:description>
+               <ipxact:addressOffset>'h4</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_IER</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h00</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_IIR</ipxact:name>
+               <ipxact:description>Interrupt Identification Register</ipxact:description>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-only</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_IIR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h01</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_FCR</ipxact:name>
+               <ipxact:description>FIFO Control Register</ipxact:description>
+               <ipxact:addressOffset>'h8</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>write-only</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_FCR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h01</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_LCR</ipxact:name>
+               <ipxact:description>Line Control Register</ipxact:description>
+               <ipxact:addressOffset>'hC</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_LCR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h0B</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+            <ipxact:register>
+               <ipxact:name>UART_REG_LSR</ipxact:name>
+               <ipxact:description>Line Status Register</ipxact:description>
+               <ipxact:addressOffset>'h14</ipxact:addressOffset>
+               <ipxact:size>32</ipxact:size>
+               <ipxact:access>read-write</ipxact:access>
+               <!--field was infered from the register definition since one field must exists within the new schema--><ipxact:field>
+                  <ipxact:name>UART_REG_LSR</ipxact:name>
+                  <ipxact:bitOffset>0</ipxact:bitOffset>
+                  <ipxact:resets>
+                     <ipxact:reset>
+                        <ipxact:value>'h20</ipxact:value>
+                     </ipxact:reset>
+                  </ipxact:resets>
+                  <ipxact:bitWidth>32</ipxact:bitWidth>
+               </ipxact:field>
+            </ipxact:register>
+         </ipxact:addressBlock>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>PVPVT</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>PVPVT</ipxact:name>
+            <ipxact:language>systemc2.1</ipxact:language>
+            <ipxact:moduleName>uart</ipxact:moduleName>
+            <ipxact:fileSetRef>
+               <ipxact:localName>uartScmlFileSet</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>pPVTargetPort</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>PVTarget_port</ipxact:typeName>
+                     <ipxact:typeDefinition>PV/PV.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">SCML</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DT</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>AT</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>pPVTargetPort</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pSerialOut</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>requires</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>sc_port</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName>tlm::tlm_blocking_put_if</ipxact:typeName>
+                           <ipxact:typeDefinition>tlm_interfaces/tlm_core_ifs.h</ipxact:typeDefinition>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DATATYPE</ipxact:name>
+                                 <ipxact:value>SERIAL_DATA_STRUCTURE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>pSerialOut</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pSerialIn</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>sc_export</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName>tlm::tlm_blocking_put_if</ipxact:typeName>
+                           <ipxact:typeDefinition>tlm_interfaces/tlm_core_ifs.h</ipxact:typeDefinition>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>DATATYPE</ipxact:name>
+                                 <ipxact:value>SERIAL_DATA_STRUCTURE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+            <ipxact:access>
+               <ipxact:portAccessType>ref</ipxact:portAccessType>
+               <ipxact:accessHandles>
+                  <ipxact:accessHandle>
+                     <ipxact:slices>
+                        <ipxact:slice>
+                           <ipxact:pathSegments>
+                              <ipxact:pathSegment>
+                                 <ipxact:pathSegmentName>pSerialIn</ipxact:pathSegmentName>
+                              </ipxact:pathSegment>
+                           </ipxact:pathSegments>
+                        </ipxact:slice>
+                     </ipxact:slices>
+                  </ipxact:accessHandle>
+               </ipxact:accessHandles>
+            </ipxact:access>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pReset</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>in</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>bool</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>PVPVT</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+         <ipxact:port>
+            <ipxact:name>pInterrupt</ipxact:name>
+            <ipxact:wire>
+               <ipxact:direction>out</ipxact:direction>
+               <ipxact:wireTypeDefs>
+                  <ipxact:wireTypeDef>
+                     <ipxact:typeName>int</ipxact:typeName>
+                     <ipxact:typeDefinition>systemc.h</ipxact:typeDefinition>
+                     <ipxact:viewRef>PVPVT</ipxact:viewRef>
+                  </ipxact:wireTypeDef>
+               </ipxact:wireTypeDefs>
+            </ipxact:wire>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>uartScmlFileSet</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/inc/uart.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/inc/uart_fifo.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/inc/uart_types.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+            <ipxact:logicalName>IphUartIF</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/inc/uart_memory_map.h</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+            <ipxact:logicalName>IphUartIF</ipxact:logicalName>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/uart.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+            <ipxact:buildCommand>
+               <ipxact:command>true</ipxact:command>
+            </ipxact:buildCommand>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/uart_register_bank.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+            <ipxact:buildCommand>
+               <ipxact:command>true</ipxact:command>
+            </ipxact:buildCommand>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/uart_interrupt_handler.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+            <ipxact:buildCommand>
+               <ipxact:command>true</ipxact:command>
+            </ipxact:buildCommand>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>./tlmsrc/src/uart_serial_tx_rx.cpp</ipxact:name>
+            <ipxact:fileType>systemCSource-2.1</ipxact:fileType>
+            <ipxact:logicalName>uartScml</ipxact:logicalName>
+            <ipxact:buildCommand>
+               <ipxact:command>true</ipxact:command>
+            </ipxact:buildCommand>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+</ipxact:component>

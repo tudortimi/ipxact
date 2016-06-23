@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+	<spirit:component xsi:schemaLocation="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4 http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4/component.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4">
+    <spirit:vendor>spiritconsortium.org</spirit:vendor>
+    <spirit:library>createComponentGenerator</spirit:library>
+    <spirit:name>apbram</spirit:name>
+    <spirit:version>1.0</spirit:version>
+    <spirit:busInterfaces>
+        <spirit:busInterface>
+            <spirit:name>APBClk</spirit:name>
+            <spirit:busType spirit:library="busdef.clock" spirit:name="clock" spirit:vendor="spiritconsortium.org" spirit:version="1.0"/>
+            <spirit:abstractionType spirit:library="busdef.clock" spirit:name="clock_rtl" spirit:vendor="spiritconsortium.org" spirit:version="1.0"/>
+            <spirit:slave/>
+            <spirit:portMaps>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>CLK</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>pclk</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+            </spirit:portMaps>
+        </spirit:busInterface>
+        <spirit:busInterface>
+            <spirit:name>APBReset</spirit:name>
+            <spirit:busType spirit:library="busdef.reset" spirit:name="reset" spirit:vendor="spiritconsortium.org" spirit:version="1.0"/>
+            <spirit:abstractionType spirit:library="busdef.reset" spirit:name="reset_rtl" spirit:vendor="spiritconsortium.org" spirit:version="1.0"/>
+            <spirit:slave/>
+            <spirit:portMaps>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>RESETn</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>presetn</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+            </spirit:portMaps>
+        </spirit:busInterface>
+        <spirit:busInterface>
+            <spirit:name>ambaAPB</spirit:name>
+            <spirit:busType spirit:library="AMBA2" spirit:name="APB" spirit:vendor="amba.com" spirit:version="r2p0_4"/>
+            <spirit:abstractionType spirit:library="AMBA2" spirit:name="APB_rtl" spirit:vendor="amba.com" spirit:version="r2p0_4"/>
+            <spirit:slave>
+                <spirit:memoryMapRef spirit:memoryMapRef="ambaAPB"/>
+            </spirit:slave>
+            <spirit:connectionRequired>true</spirit:connectionRequired>
+            <spirit:portMaps>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PSELx</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>psel</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PENABLE</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>penable</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PADDR</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>paddr</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PWRITE</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>pwrite</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PWDATA</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>pwdata</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PRDATA</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>prdata</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PCLK</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>pclk</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+                <spirit:portMap>
+                    <spirit:logicalPort>
+                        <spirit:name>PRESETn</spirit:name>
+                    </spirit:logicalPort>
+                    <spirit:physicalPort>
+                        <spirit:name>presetn</spirit:name>
+                    </spirit:physicalPort>
+                </spirit:portMap>
+            </spirit:portMaps>
+        </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:memoryMaps>
+        <spirit:memoryMap>
+            <spirit:name>ambaAPB</spirit:name>
+            <spirit:bank spirit:bankAlignment="serial">
+                <spirit:name>defaultid4490635</spirit:name>
+                <spirit:baseAddress>0</spirit:baseAddress>
+                <spirit:addressBlock>
+                    <spirit:name>RAM</spirit:name>
+                    <spirit:range spirit:format="long">0xFFC</spirit:range>
+                    <spirit:width spirit:format="long">32</spirit:width>
+                    <spirit:usage>memory</spirit:usage>
+                    <spirit:volatile>false</spirit:volatile>
+                    <spirit:access>read-write</spirit:access>
+                </spirit:addressBlock>
+                <spirit:addressBlock>
+                    <spirit:name>idAddressBlock</spirit:name>
+                    <spirit:range spirit:format="long">4</spirit:range>
+                    <spirit:width spirit:format="long">32</spirit:width>
+                    <spirit:usage>register</spirit:usage>
+                    <spirit:volatile>false</spirit:volatile>
+                    <spirit:access>read-only</spirit:access>
+                    <spirit:register>
+                        <spirit:name>IDReg</spirit:name>
+                        <spirit:description>ID register</spirit:description>
+                        <spirit:addressOffset>0x0</spirit:addressOffset>
+                        <spirit:size>32</spirit:size>
+                        <spirit:access>read-only</spirit:access>
+                        <spirit:reset>
+                            <spirit:value>0x00000D08</spirit:value>
+                        </spirit:reset>
+                        <spirit:field>
+                            <spirit:name>ID</spirit:name>
+                            <spirit:description>ID Field</spirit:description>
+                            <spirit:bitOffset>0</spirit:bitOffset>
+                            <spirit:bitWidth>32</spirit:bitWidth>
+                            <spirit:access>read-only</spirit:access>
+                        </spirit:field>
+                    </spirit:register>
+                </spirit:addressBlock>
+            </spirit:bank>
+        </spirit:memoryMap>
+    </spirit:memoryMaps>
+    <spirit:model>
+        <spirit:views>
+            <spirit:view>
+                <spirit:name>verilogsource</spirit:name>
+                <spirit:envIdentifier>:modelsim.mentor.com:</spirit:envIdentifier>
+                <spirit:envIdentifier>:vcs.synopsys.com:</spirit:envIdentifier>
+                <spirit:envIdentifier>:ncsim.cadence.com:</spirit:envIdentifier>
+                <spirit:envIdentifier>:designcompiler.synopsys.com:</spirit:envIdentifier>
+                <spirit:language>verilog</spirit:language>
+                <spirit:modelName>apbram</spirit:modelName>
+                <spirit:fileSetRef>fs-verilogSource</spirit:fileSetRef>
+            </spirit:view>
+        </spirit:views>
+        <spirit:ports>
+            <spirit:port>
+                <spirit:name>pclk</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>presetn</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>psel</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>penable</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>paddr</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                    <spirit:vector>
+                        <spirit:left>11</spirit:left>
+                        <spirit:right>0</spirit:right>
+                    </spirit:vector>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>pwrite</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>pwdata</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>in</spirit:direction>
+                    <spirit:vector>
+                        <spirit:left>31</spirit:left>
+                        <spirit:right>0</spirit:right>
+                    </spirit:vector>
+                </spirit:wire>
+            </spirit:port>
+            <spirit:port>
+                <spirit:name>prdata</spirit:name>
+                <spirit:wire>
+                    <spirit:direction>out</spirit:direction>
+                    <spirit:vector>
+                        <spirit:left>31</spirit:left>
+                        <spirit:right>0</spirit:right>
+                    </spirit:vector>
+                </spirit:wire>
+            </spirit:port>
+        </spirit:ports>
+    </spirit:model>
+    <spirit:fileSets>
+        <spirit:fileSet>
+            <spirit:name>fs-verilogSource</spirit:name>
+            <spirit:file>
+                <spirit:name>apbram.v/spirit:name>
+                <spirit:fileType>verilogSource</spirit:fileType>
+                <spirit:logicalName>apbram_lib</spirit:logicalName>
+            </spirit:file>
+        </spirit:fileSet>
+    </spirit:fileSets>
+</spirit:component>

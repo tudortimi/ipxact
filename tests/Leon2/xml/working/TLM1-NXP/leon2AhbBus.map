@@ -1,0 +1,2 @@
+top_TLM.i_mem.ahb_slave_port    00000000 1000000
+top_TLM.i_sub.ahb_slave_port    30000000 8000

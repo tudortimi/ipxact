@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: design_MS_2.xml
+// Author:      The SPIRIT Consortium
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Addressing</ipxact:library>
+   <ipxact:name>design_MS_2</ipxact:name>
+   <ipxact:version>1.0</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_directMaster</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Addressing" name="directMaster"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="asBase">0</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="mSteer">off</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="asRange">4 * (2 ** 30)</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="asWidth">32</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="dataWidth">32</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="addr">0</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_directSlave</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Addressing" name="directSlave"
+                              version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="sSteer">off</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="mmBase">'h1000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="mmRange">'h400</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="mmWidth">32</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="dataWidth">32</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="addr">0</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:interconnections>
+      <ipxact:interconnection>
+         <ipxact:name>m2s</ipxact:name>
+         <ipxact:activeInterface componentRef="i_directMaster" busRef="directMaster"/>
+         <ipxact:activeInterface componentRef="i_directSlave" busRef="directSlave"/>
+      </ipxact:interconnection>
+   </ipxact:interconnections>
+   <ipxact:description>Addressing example, master-slave</ipxact:description>
+</ipxact:design>

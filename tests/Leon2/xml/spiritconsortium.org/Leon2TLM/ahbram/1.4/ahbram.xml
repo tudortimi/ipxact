@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// 
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+// 
+// Copyright (c) 2005, 2006, 2007, 2008, 2009 The SPIRIT Consortium.
+// 
+// This work forms part of a deliverable of The SPIRIT Consortium.
+// 
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+// 
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+// 
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at 
+// http://www.spiritconsortium.org/about/contact_us/
+// 
+// This file may be copied, and distributed, with or without
+// modifications; but this notice must be included on any copy.
+-->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2TLM</ipxact:library>
+   <ipxact:name>ahbram</ipxact:name>
+   <ipxact:version>1.4</ipxact:version>
+   <ipxact:busInterfaces>
+      <ipxact:busInterface>
+         <ipxact:name>AHB_Slave</ipxact:name>
+         <ipxact:busType library="AMBA2" name="AHB" vendor="amba.com" version="r2p0_6"/>
+         <ipxact:abstractionTypes>
+            <ipxact:abstractionType>
+               <ipxact:abstractionRef library="abstractiondef.tlm" name="ahb_pv" vendor="spiritconsortium.org"
+                                      version="1.4"/>
+               <ipxact:portMaps>
+                  <ipxact:portMap>
+                     <ipxact:logicalPort>
+                        <ipxact:name>PV_TRANS</ipxact:name>
+                     </ipxact:logicalPort>
+                     <ipxact:physicalPort>
+                        <ipxact:name>ahb_slave_port</ipxact:name>
+                     </ipxact:physicalPort>
+                  </ipxact:portMap>
+               </ipxact:portMaps>
+            </ipxact:abstractionType>
+         </ipxact:abstractionTypes>
+         <ipxact:slave>
+            <ipxact:memoryMapRef memoryMapRef="AHB_MM"/>
+         </ipxact:slave>
+      </ipxact:busInterface>
+   </ipxact:busInterfaces>
+   <ipxact:memoryMaps>
+      <ipxact:memoryMap>
+         <ipxact:name>AHB_MM</ipxact:name>
+         <ipxact:bank bankAlignment="parallel">
+            <ipxact:name>ahbMemoryMap</ipxact:name>
+            <ipxact:baseAddress>memoryBaseAddress</ipxact:baseAddress>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4489955</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange0" type="longint">
+                     <ipxact:name>addressRange0</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4489979</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange1" type="longint">
+                     <ipxact:name>addressRange1</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4490002</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange2" type="longint">
+                     <ipxact:name>addressRange2</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:addressBlock>
+               <ipxact:name>defaultid4490024</ipxact:name>
+               <ipxact:range>$pow(2, addressBusSize)</ipxact:range>
+               <ipxact:width>8</ipxact:width>
+               <ipxact:usage>memory</ipxact:usage>
+               <ipxact:access>read-write</ipxact:access>
+               <ipxact:parameters>
+                  <ipxact:parameter parameterId="addressRange3" type="longint">
+                     <ipxact:name>addressRange3</ipxact:name>
+                     <ipxact:value>$pow(2, addressBusSize)</ipxact:value>
+                  </ipxact:parameter>
+               </ipxact:parameters>
+            </ipxact:addressBlock>
+            <ipxact:parameters>
+               <ipxact:parameter parameterId="memoryBaseAddress" resolve="user" type="longint"
+                                 configGroups="immediate"
+                                 prompt="Base address offset:">
+                  <ipxact:name>memoryBaseAddress</ipxact:name>
+                  <ipxact:value>'h00000000</ipxact:value>
+               </ipxact:parameter>
+            </ipxact:parameters>
+         </ipxact:bank>
+      </ipxact:memoryMap>
+   </ipxact:memoryMaps>
+   <ipxact:model>
+      <ipxact:views>
+         <ipxact:view>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+            <ipxact:componentInstantiationRef>TLM_PV</ipxact:componentInstantiationRef>
+         </ipxact:view>
+      </ipxact:views>
+      <ipxact:instantiations>
+         <ipxact:componentInstantiation>
+            <ipxact:name>TLM_PV</ipxact:name>
+            <ipxact:language>systemc</ipxact:language>
+            <ipxact:moduleName>ahbram</ipxact:moduleName>
+            <ipxact:moduleParameters>
+               <ipxact:moduleParameter type="longint" dataType="unsigned long">
+                  <ipxact:name>addrsize</ipxact:name>
+                  <ipxact:value>addressBusSize</ipxact:value>
+               </ipxact:moduleParameter>
+            </ipxact:moduleParameters>
+            <ipxact:fileSetRef>
+               <ipxact:localName>sourceCode</ipxact:localName>
+            </ipxact:fileSetRef>
+         </ipxact:componentInstantiation>
+      </ipxact:instantiations>
+      <ipxact:ports>
+         <ipxact:port>
+            <ipxact:name>ahb_slave_port</ipxact:name>
+            <ipxact:transactional>
+               <ipxact:initiative>provides</ipxact:initiative>
+               <ipxact:transTypeDefs>
+                  <ipxact:transTypeDef>
+                     <ipxact:typeName>pv_target_port</ipxact:typeName>
+                     <ipxact:typeDefinition>pv_target_port.h</ipxact:typeDefinition>
+                     <ipxact:typeParameters>
+                        <ipxact:serviceTypeDef>
+                           <ipxact:typeName implicit="true">OSCI_TLM_PV</ipxact:typeName>
+                           <ipxact:typeParameters>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef1</ipxact:name>
+                                 <ipxact:value>ADDRESS_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                              <ipxact:typeParameter>
+                                 <ipxact:name>typedef2</ipxact:name>
+                                 <ipxact:value>DATA_TYPE</ipxact:value>
+                              </ipxact:typeParameter>
+                           </ipxact:typeParameters>
+                        </ipxact:serviceTypeDef>
+                     </ipxact:typeParameters>
+                  </ipxact:transTypeDef>
+               </ipxact:transTypeDefs>
+            </ipxact:transactional>
+         </ipxact:port>
+      </ipxact:ports>
+   </ipxact:model>
+   <ipxact:choices>
+      <ipxact:choice>
+         <ipxact:name>addressWidthChoice</ipxact:name>
+         <ipxact:enumeration text="1K">8</ipxact:enumeration>
+         <ipxact:enumeration text="2K">9</ipxact:enumeration>
+         <ipxact:enumeration text="4K">10</ipxact:enumeration>
+         <ipxact:enumeration text="8K">11</ipxact:enumeration>
+         <ipxact:enumeration text="16K">12</ipxact:enumeration>
+         <ipxact:enumeration text="32K">13</ipxact:enumeration>
+         <ipxact:enumeration text="64K">14</ipxact:enumeration>
+         <ipxact:enumeration text="128K">15</ipxact:enumeration>
+         <ipxact:enumeration text="256K">16</ipxact:enumeration>
+      </ipxact:choice>
+   </ipxact:choices>
+   <ipxact:fileSets>
+      <ipxact:fileSet>
+         <ipxact:name>sourceCode</ipxact:name>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/ahbram.cc</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:dependency>tlmsrc</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>tlmsrc/ahbram.h</ipxact:name>
+            <ipxact:fileType>systemCSource</ipxact:fileType>
+            <ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+            <ipxact:logicalName>ahbram</ipxact:logicalName>
+            <ipxact:dependency>../../PV</ipxact:dependency>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_slave_base.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/pv_target_port.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+         <ipxact:file>
+            <ipxact:name>../../PV/user_types.h</ipxact:name>
+            <ipxact:fileType>unknown</ipxact:fileType>
+            <ipxact:isIncludeFile>true</ipxact:isIncludeFile>
+         </ipxact:file>
+      </ipxact:fileSet>
+   </ipxact:fileSets>
+   <ipxact:parameters>
+      <ipxact:parameter parameterId="addressBusSize" resolve="user" type="longint"
+                        choiceRef="addressWidthChoice"
+                        configGroups="requiredConfig"
+                        prompt="RAM Depth (bytes):">
+         <ipxact:name>addrsize</ipxact:name>
+         <ipxact:value>16</ipxact:value>
+      </ipxact:parameter>
+   </ipxact:parameters>
+</ipxact:component>

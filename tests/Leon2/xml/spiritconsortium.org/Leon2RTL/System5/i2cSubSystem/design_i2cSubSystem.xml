@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Description: design_i2cSubSystem.xml
+// Author:      The SPIRIT Consortium
+// Revision:    $Revision: 1506 $
+// Date:        $Date: 2009-04-25 23:51:56 -0700 (Sat, 25 Apr 2009) $
+//
+// Copyright (c) 2009 The SPIRIT Consortium.
+//
+// This work forms part of a deliverable of The SPIRIT Consortium.
+//
+// Use of these materials are governed by the legal terms and conditions
+// outlined in the disclaimer available from www.spiritconsortium.org.
+//
+// This source file is provided on an AS IS basis.  The SPIRIT
+// Consortium disclaims any warranty express or implied including
+// any warranty of merchantability and fitness for use for a
+// particular purpose.
+//
+// The user of the source file shall indemnify and hold The SPIRIT
+// Consortium and its members harmless from any damages or liability.
+// Users are requested to provide feedback to The SPIRIT Consortium
+// using either mailto:feedback@lists.spiritconsortium.org or the forms at
+// http://www.spiritconsortium.org/about/contact_us/
+//
+// This file may be copied, and distributed, with or without
+// modifications; this notice must be included on any copy.
+-->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+   <ipxact:vendor>spiritconsortium.org</ipxact:vendor>
+   <ipxact:library>Leon2RTL</ipxact:library>
+   <ipxact:name>design_i2cSubSystem</ipxact:name>
+   <ipxact:version>5.0</ipxact:version>
+   <ipxact:componentInstances>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_i2c</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="i2c" version="1.0">
+            <ipxact:configurableElementValues>
+               <ipxact:configurableElementValue referenceId="ClockPeriod">8</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseDuration">4</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseOffset">4</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ClockPulseValue">1</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ipClockPeriod">1000</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ipClockPulseDuration">500</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ipClockPulseOffset">500</ipxact:configurableElementValue>
+               <ipxact:configurableElementValue referenceId="ipClockPulseValue">1</ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+         </ipxact:componentRef>
+      </ipxact:componentInstance>
+      <ipxact:componentInstance>
+         <ipxact:instanceName>i_i2c_io</ipxact:instanceName>
+         <ipxact:componentRef vendor="spiritconsortium.org" library="Leon2RTL" name="i2c_io" version="1.0"/>
+      </ipxact:componentInstance>
+   </ipxact:componentInstances>
+   <ipxact:interconnections>
+      <ipxact:interconnection>
+         <ipxact:name>defaultid4489761</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c_io" busRef="i2c_internal"/>
+         <ipxact:activeInterface componentRef="i_i2c" busRef="i2c_internal"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>i2c_interrupt</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c" busRef="interrupt"/>
+         <ipxact:hierInterface busRef="i2c_interrupt"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>i2c</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c_io" busRef="i2c"/>
+         <ipxact:hierInterface busRef="i2c"/>
+      </ipxact:interconnection>
+      <ipxact:interconnection>
+         <ipxact:name>i2c_ambaAPB</ipxact:name>
+         <ipxact:activeInterface componentRef="i_i2c" busRef="ambaAPB"/>
+         <ipxact:hierInterface busRef="i2c_ambaAPB"/>
+      </ipxact:interconnection>
+   </ipxact:interconnections>
+   <ipxact:adHocConnections>
+      <ipxact:adHocConnection>
+         <ipxact:name>i_i2c_ip_clk</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c" portRef="ip_clk"/>
+            <ipxact:externalPortReference portRef="i_i2c_ip_clk"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>i_i2c_rst_an</ipxact:name>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c" portRef="rst_an"/>
+            <ipxact:externalPortReference portRef="i_i2c_rst_an"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+      <ipxact:adHocConnection>
+         <ipxact:name>logic_zero</ipxact:name>
+         <ipxact:tiedValue>0</ipxact:tiedValue>
+         <ipxact:portReferences>
+            <ipxact:internalPortReference componentRef="i_i2c_io" portRef="scl_out"/>
+            <ipxact:internalPortReference componentRef="i_i2c_io" portRef="sda_out"/>
+         </ipxact:portReferences>
+      </ipxact:adHocConnection>
+   </ipxact:adHocConnections>
+</ipxact:design>
